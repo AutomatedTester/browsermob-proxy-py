@@ -1,7 +1,7 @@
 browsermob-proxy-py
 ===================
 
-Ruby client for the BrowserMob Proxy 2.0 REST API.
+Python client for the BrowserMob Proxy 2.0 REST API.
 
 
 
@@ -11,21 +11,27 @@ How to use with selenium-webdriver
 Manually:
 
 ``` python 
+from browsermobproxy import Server
+s = Server("path/to/browsermob-proxy")
+s.start()
+proxy = s.create_proxy
+
+from selenium import webdriver
+profile  = webdriver.FirefoxProfile()
+profile.set_proxy(proxy.selenium_proxy())
+driver = webdriver.Firefox(firefox_profile=p)
+
+
+proxy.new_har("google")
+driver.get("http://www.google.co.uk")
+proxy.har # returns a HAR JSON blob
+
+proxy.stop()
+driver.quit()
 
 ```
 
-With event listener:
 
-``` python
-
-```
-
-Viewing HARs
-------------
-
-The HAR gem includes a HAR viewer. After running the code above, you can view the saved HAR by running
-
-    $ har /tmp/google.har
 
 See also
 --------
@@ -40,8 +46,6 @@ Note on Patches/Pull Requests
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
 Copyright
