@@ -1,6 +1,4 @@
-import os
-import signal
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, STDOUT
 import socket
 import time
 
@@ -15,8 +13,7 @@ class Server(object):
         self.command = ['sh', path, '--port=%s' % self.port]
 
     def start(self):
-        self.process = Popen(self.command, stdout=PIPE, stderr=PIPE)
-
+        self.process = Popen(self.command, stdout=PIPE, stderr=STDOUT)
         count = 0
         while not self._is_listening():
             time.sleep(0.1)
@@ -29,8 +26,8 @@ class Server(object):
     def stop(self):
         try:
             if self.process:
-                os.kill(self.process.pid, signal.SIGTERM)
-                os.wait()
+                self.process.kill()
+                self.process.wait()
         except AttributeError:
             # kill may not be available under windows environment
             pass
@@ -41,7 +38,8 @@ class Server(object):
 
     @property
     def create_proxy(self):
-        return Client(self.url)
+        client = Client(self.url)
+        return client
 
     def _is_listening(self):
         try:
