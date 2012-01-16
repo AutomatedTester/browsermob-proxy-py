@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(name='browsermob-proxy',
       version='0.0.1',
-      description='A simple Assertion Framework',
+      description='A library for interacting with the Browsermob Proxy',
       author='David Burns',
       author_email='david.burns at theautomatedtester dot co dot uk',
       url='http://oss.theautomatedtester.co.uk/browsermob-proxy-py',
@@ -15,4 +15,6 @@ setup(name='browsermob-proxy',
                   'Topic :: Software Development :: Testing',
                   'Topic :: Software Development :: Libraries',
                   'Programming Language :: Python'],
-        packages = find_packages() )
+        packages = find_packages(),
+        install_requires=['httplib2==0.7.0'],
+        )
