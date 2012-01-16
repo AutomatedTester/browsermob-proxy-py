@@ -11,7 +11,29 @@
     <p>
       This is the Python Library for interaction with the Browsermob Proxy. It allows us to create a proxy, set references and generate HAR representations. For more details read the <a href="docs/index.html">Pydocs</a>. Note that this will only work with Selenium 2.17 onwards.
     </p>
+    <p>
+        <h2>Example</h2>
+        <pre>
+            <code>
+                from browsermobproxy import Server
+                server = Server("path/to/browsermob-proxy")
+                server.start()
+                proxy = server.create_proxy
 
+                from selenium import webdriver
+                profile  = webdriver.FirefoxProfile()
+                profile.set_proxy(proxy.selenium_proxy())
+                driver = webdriver.Firefox(firefox_profile=profile)
+
+                proxy.new_har("google")
+                driver.get("http://www.google.co.uk")
+                proxy.har # returns a HAR JSON blob
+
+                proxy.stop()
+                driver.quit()
+            </code>
+        </pre>
+    </p>
     <p>
       <h2>Releases</h2>
       <a href="http://pypi.python.org/pypi/browsermob_proxy"><h3>0.0.1</h3></a>
