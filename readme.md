@@ -12,8 +12,8 @@ Manually:
 
 ``` python 
 from browsermobproxy import Server
-s = Server("path/to/browsermob-proxy")
-s.start()
+server = Server("path/to/browsermob-proxy")
+server.start()
 proxy = s.create_proxy
 
 from selenium import webdriver
@@ -26,7 +26,7 @@ proxy.new_har("google")
 driver.get("http://www.google.co.uk")
 proxy.har # returns a HAR JSON blob
 
-proxy.stop()
+server.stop()
 driver.quit()
 
 ```
