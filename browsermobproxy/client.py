@@ -18,6 +18,18 @@ class Client(object):
         url_parts = self.host.split(":")
         self.proxy = url_parts[0] + ":" + url_parts[1] + ":" +  str(self.port)
 
+    def headers(self, headers):
+        """
+        This sets the headers that will set by the proxy on all requests
+        :Args:
+         - headers: this is a dictionary of the headers to be set
+         """
+        if not isinstance(headers, dict):
+            raise TypeError("headers needs to be dictionary")
+
+        requests.post('%s/proxy/%s/har' % (self.host, self.port),
+                                json.dumps(headers))
+
     def new_har(self, ref=None):
         """
         This sets a new HAR to be recorded
