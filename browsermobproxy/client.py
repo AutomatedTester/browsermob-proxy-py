@@ -1,4 +1,5 @@
-from httplib2 import Http
+#from httplib2 import Http
+import requests
 from urllib import urlencode
 import json
 
@@ -11,9 +12,8 @@ class Client(object):
          - url: This is where the BrowserMob Proxy lives
         """
         self.host = url 
-        h = Http()
-        resp, content = h.request('%s/proxy' % self.host, 'POST', urlencode(''))
-        jcontent = json.loads(content)
+        resp = requests.post('%s/proxy' % self.host, urlencode(''))
+        jcontent = json.loads(resp.content)
         self.port = jcontent['port']
         url_parts = self.host.split(":")
         self.proxy = url_parts[0] + ":" + url_parts[1] + ":" +  str(self.port)
@@ -24,9 +24,8 @@ class Client(object):
         :Args:
          - ref: A reference for the HAR. Defaults to None
         """
-        h = Http()
-        resp, content = h.request('%s/proxy/%s/har' % (self.host, self.port), 
-                                    'PUT', ref or '')
+        requests.put('%s/proxy/%s/har' % (self.host, self.port), 
+                                    ref or '')
 
     def new_page(self, ref):
         """
@@ -34,21 +33,19 @@ class Client(object):
         :Args:
          - ref: A reference for the new page. Defaults to None
         """
-        h = Http()
-        resp, content = h.request('%s/proxy/%s/har/pageRef' % (self.host, self.port), 
-                                    'PUT', ref or '')
-        if content:
-            return json.loads(content)
+        resp = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port), 
+                                    ref or '')
+        if resp.content:
+            return json.loads(resp.content)
 
     @property
     def har(self):
         """
         Gets the HAR that has been recorded
         """
-        h = Http()
-        resp, content = h.request('%s/proxy/%s/har' % (self.host, self.port), 
-                                    'GET')
-        return json.loads(content)
+        resp = requests.get('%s/proxy/%s/har' % (self.host, self.port))
+                                    
+        return json.loads(resp.content)
 
     def selenium_proxy(self):
         """
@@ -65,9 +62,8 @@ class Client(object):
          - status_code: the HTTP status code to return for URLs that do not match the whitelist 
 
         """
-        h = Http()
-        resp, content = h.request('%s/proxy/%s/whitelist' % (self.host, self.port), 
-                                    'PUT', urlencode({ 'regex': regexp, 'status': status_code
+        resp = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port), 
+                                    urlencode({ 'regex': regexp, 'status': status_code
                                     }))
 
 
@@ -79,10 +75,8 @@ class Client(object):
          - status_code: the HTTP status code to return for URLs that do not match the blacklist 
 
         """
-
-        h = Http()
-        resp, content = h.request('%s/proxy/%s/blacklist' % (self.host, self.port), 
-                                    'PUT', urlencode({ 'regex': regexp, 'status': status_code
+        resp = requests.put('%s/proxy/%s/blacklist' % (self.host, self.port), 
+                                    urlencode({ 'regex': regexp, 'status': status_code
                                     }))
 
     LIMITS = {
@@ -112,14 +106,11 @@ class Client(object):
         if len(params.items()) == 0:
             raise Exception("You need to specify one of the valid Keys")
         
-        h = Http()
-        resp, content = h.request('%s/proxy/%s/limit' % (self.host, self.port), 
-                                    'PUT', urlencode(params))
+        resp = requests.put('%s/proxy/%s/limit' % (self.host, self.port), 
+                                    urlencode(params))
 
     def close(self):
         """
         shuts down the proxy and closes the port
         """
-        h = Http()
-        resp, content = h.request('%s/proxy/%s' % (self.host, self.port), 
-                                    'DELETE' )
+        resp = requests.delete('%s/proxy/%s' % (self.host, self.port))
