@@ -22,12 +22,12 @@ class Server(object):
 
     def start(self):
         """
-        This will start the browsermob proxy and then wait until it can interact with it 
+        This will start the browsermob proxy and then wait until it can interact with it
         """
         self.process = Popen(self.command, stdout=PIPE, stderr=STDOUT)
         count = 0
         while not self._is_listening():
-            time.sleep(0.1)
+            time.sleep(0.5)
             count += 1
             if count == 30:
                 raise Exception("Can't connect to Browsermob-Proxy")
