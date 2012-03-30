@@ -32,6 +32,7 @@ class Server(object):
 
         self.path = path
         self.port = options.get('port', 8080)
+        self.process = None
 
         if platform.system == 'darwin':
             self.command = ['sh']
@@ -56,10 +57,12 @@ class Server(object):
         """
         This will stop the process running the proxy
         """
+        if self.process.poll() != None:
+            return
+
         try:
-            if self.process:
-                self.process.kill()
-                self.process.wait()
+            self.process.kill()
+            self.process.wait()
         except AttributeError:
             # kill may not be available under windows environment
             pass
