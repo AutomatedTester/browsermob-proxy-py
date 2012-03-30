@@ -17,7 +17,7 @@ class Server(object):
                      This defaults to an empty dictionary
         """
         self.path = path
-        self.port = options['port'] if options.has_key('port') else 8080
+        self.port = options.get('port', 8080)
         self.command = ['sh', path, '--port=%s' % self.port]
 
     def start(self):
