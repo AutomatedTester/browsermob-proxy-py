@@ -76,7 +76,6 @@ class Server(object):
         """
         return "http://localhost:%d" % self.port
 
-    @property
     def create_proxy(self):
         """
         Gets a client class that allow to set all the proxy details that you
