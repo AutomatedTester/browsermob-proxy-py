@@ -1,6 +1,10 @@
 from subprocess import Popen, PIPE, STDOUT
 import socket
 import time
+import platform
+
+system = platform.system().lower()
+
 
 from client import Client
 
@@ -13,16 +17,27 @@ class Server(object):
 
         :Args:
          - path : Path to the browsermob proxy batch file
-         - options : Dictionary that can hold the port. More items will be added in the future.
+         - options : Dictionary that can hold the port.
+                     More items will be added in the future.
                      This defaults to an empty dictionary
         """
+        if platform.system == 'windows':
+            if not path.endswith('.bat'):
+                path += '.bat'
+
         self.path = path
         self.port = options.get('port', 8080)
-        self.command = ['sh', path, '--port=%s' % self.port]
+
+        if platform.system == 'darwin':
+            self.command = ['sh']
+        else:
+            self.command = []
+        self.command += [path, '--port=%s' % self.port]
 
     def start(self):
         """
-        This will start the browsermob proxy and then wait until it can interact with it
+        This will start the browsermob proxy and then wait until it can
+        interact with it
         """
         self.process = Popen(self.command, stdout=PIPE, stderr=STDOUT)
         count = 0
@@ -47,14 +62,16 @@ class Server(object):
     @property
     def url(self):
         """
-        Gets the url that the proxy is running on. This is not the URL clients should connect to.
+        Gets the url that the proxy is running on. This is not the URL clients
+        should connect to.
         """
         return "http://localhost:%d" % self.port
 
     @property
     def create_proxy(self):
         """
-        Gets a client class that allow to set all the proxy details that you may need to.
+        Gets a client class that allow to set all the proxy details that you
+        may need to.
         """
         client = Client(self.url)
         return client
@@ -68,4 +85,3 @@ class Server(object):
             return True
         except socket.error:
             return False
-
