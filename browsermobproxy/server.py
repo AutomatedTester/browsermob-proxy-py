@@ -51,6 +51,7 @@ class Server(object):
             time.sleep(0.5)
             count += 1
             if count == 30:
+                self.stop()
                 raise Exception("Can't connect to Browsermob-Proxy")
 
     def stop(self):
