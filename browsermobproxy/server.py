@@ -1,3 +1,4 @@
+import os
 from subprocess import Popen, PIPE, STDOUT
 import socket
 import time
@@ -24,6 +25,10 @@ class Server(object):
         if platform.system == 'windows':
             if not path.endswith('.bat'):
                 path += '.bat'
+
+        if not os.path.isfile(path):
+            raise Exception("Browsermob-Proxy binary couldn't be found in path"
+                            " provided: %s" % path)
 
         self.path = path
         self.port = options.get('port', 8080)
