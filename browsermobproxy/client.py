@@ -66,6 +66,12 @@ class Client(object):
         from selenium import webdriver
         return webdriver.Proxy({"httpProxy":self.proxy})
 
+    def webdriver_proxy(self):
+        """
+        Returns a Selenium WebDriver Proxy class with details of the HTTP Proxy
+        """
+        return self.selenium_proxy()
+
     def add_to_webdriver_capabilities(self, capabilities):
         """
         Adds an 'proxy' entry to a desired capabilities dictionary with the BrowserMob proxy information
