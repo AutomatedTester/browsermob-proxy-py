@@ -3,10 +3,6 @@ from subprocess import Popen, PIPE, STDOUT
 import socket
 import time
 import platform
-
-system = platform.system().lower()
-
-
 from client import Client
 
 
@@ -22,7 +18,7 @@ class Server(object):
                      More items will be added in the future.
                      This defaults to an empty dictionary
         """
-        if platform.system == 'windows':
+        if platform.system() == 'Windows':
             if not path.endswith('.bat'):
                 path += '.bat'
 
@@ -34,7 +30,7 @@ class Server(object):
         self.port = options.get('port', 8080)
         self.process = None
 
-        if platform.system == 'darwin':
+        if platform.system() == 'Darwin':
             self.command = ['sh']
         else:
             self.command = []
