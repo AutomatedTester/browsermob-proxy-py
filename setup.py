@@ -16,5 +16,5 @@ setup(name='browsermob-proxy',
                   'Topic :: Software Development :: Libraries',
                   'Programming Language :: Python'],
         packages = find_packages(),
-        install_requires=['requests==0.10.7'],
+        install_requires=['requests>=0.10.7'],
         )
