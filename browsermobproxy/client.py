@@ -66,6 +66,13 @@ class Client(object):
         from selenium import webdriver
         return webdriver.Proxy({"httpProxy":self.proxy})
 
+    def add_to_webdriver_capabilities(self, capabilities):
+        """
+        Adds an 'proxy' entry to a desired capabilities dictionary with the BrowserMob proxy information
+        """
+        capabilities['proxy'] = {'proxyType': 'manual',
+                                 'httpProxy': self.proxy}
+
     def whitelist(self, regexp, status_code):
         """
         Sets a list of URL patterns to whitelist
