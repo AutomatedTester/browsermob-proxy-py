@@ -27,8 +27,10 @@ class Client(object):
         if not isinstance(headers, dict):
             raise TypeError("headers needs to be dictionary")
 
-        requests.post('%s/proxy/%s/har' % (self.host, self.port),
-                                json.dumps(headers))
+        r = requests.post(url='%s/proxy/%s/headers' % (self.host, self.port),
+                          data=json.dumps(headers),
+                          headers = {'content-type': 'application/json'})
+        return r.status_code
 
     def new_har(self, ref=None):
         """
