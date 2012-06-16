@@ -1,22 +1,21 @@
-#from httplib2 import Http
 import requests
 from urllib import urlencode
 import json
 
+
 class Client(object):
-    
     def __init__(self, url):
         """
         Initialises a new Client object
         :Args:
          - url: This is where the BrowserMob Proxy lives
         """
-        self.host = url 
+        self.host = url
         resp = requests.post('%s/proxy' % self.host, urlencode(''))
         jcontent = json.loads(resp.content)
         self.port = jcontent['port']
         url_parts = self.host.split(":")
-        self.proxy = url_parts[0] + ":" + url_parts[1] + ":" +  str(self.port)
+        self.proxy = url_parts[0] + ":" + url_parts[1] + ":" + str(self.port)
 
     def headers(self, headers):
         """
@@ -29,7 +28,7 @@ class Client(object):
 
         r = requests.post(url='%s/proxy/%s/headers' % (self.host, self.port),
                           data=json.dumps(headers),
-                          headers = {'content-type': 'application/json'})
+                          headers={'content-type': 'application/json'})
         return r.status_code
 
     def new_har(self, ref=None):
@@ -55,16 +54,17 @@ class Client(object):
             payload = {"pageRef": ref}
         else:
             payload = {}
-        r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port), payload)
+        r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port),
+                         payload)
         return r.status_code
-        
+
     @property
     def har(self):
         """
         Gets the HAR that has been recorded
         """
         r = requests.get('%s/proxy/%s/har' % (self.host, self.port))
-                                    
+
         return r.json
 
     def selenium_proxy(self):
@@ -72,7 +72,7 @@ class Client(object):
         Returns a Selenium WebDriver Proxy class with details of the HTTP Proxy
         """
         from selenium import webdriver
-        return webdriver.Proxy({"httpProxy":self.proxy})
+        return webdriver.Proxy({"httpProxy": self.proxy})
 
     def webdriver_proxy(self):
         """
@@ -82,7 +82,8 @@ class Client(object):
 
     def add_to_webdriver_capabilities(self, capabilities):
         """
-        Adds an 'proxy' entry to a desired capabilities dictionary with the BrowserMob proxy information
+        Adds an 'proxy' entry to a desired capabilities dictionary with the
+        BrowserMob proxy information
         """
         capabilities['proxy'] = {'proxyType': 'manual',
                                  'httpProxy': self.proxy}
@@ -92,34 +93,31 @@ class Client(object):
         Sets a list of URL patterns to whitelist
         :Args:
          - regex: a comma separated list of regular expressions
-         - status_code: the HTTP status code to return for URLs that do not match the whitelist 
-
+         - status_code: the HTTP status code to return for URLs that do not
+           match the whitelist
         """
-        r = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port), 
-                                    urlencode({ 'regex': regexp, 'status': status_code
-                                    }))
+        r = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port),
+                         urlencode({'regex': regexp, 'status': status_code}))
         return r.status_code
-
 
     def blacklist(self, regexp, status_code):
         """
-        Sets a list of URL patterns to blacklist 
+        Sets a list of URL patterns to blacklist
         :Args:
          - regex: a comma separated list of regular expressions
-         - status_code: the HTTP status code to return for URLs that do not match the blacklist 
+         - status_code: the HTTP status code to return for URLs that do not
+           match the blacklist
 
         """
-        r = requests.put('%s/proxy/%s/blacklist' % (self.host, self.port), 
-                                    urlencode({ 'regex': regexp, 'status': status_code
-                                    }))
+        r = requests.put('%s/proxy/%s/blacklist' % (self.host, self.port),
+                         urlencode({'regex': regexp, 'status': status_code}))
         return r.status_code
 
     LIMITS = {
-        'upstream_kbps' : 'upstreamKbps',
-        'downstream_kbps' : 'downstreamKbps',
-        'latency' : 'latency'
-      }
-    
+        'upstream_kbps': 'upstreamKbps',
+        'downstream_kbps': 'downstreamKbps',
+        'latency': 'latency'
+    }
 
     def limits(self, options):
         """
@@ -133,16 +131,16 @@ class Client(object):
         params = {}
 
         for (k, v) in options.items():
-            if not self.LIMITS.has_key(k):
+            if k not in self.LIMITS:
                 raise KeyError('invalid key: %s' % k)
 
             params[self.LIMITS[k]] = int(v)
 
         if len(params.items()) == 0:
             raise KeyError("You need to specify one of the valid Keys")
-        
-        r = requests.put('%s/proxy/%s/limit' % (self.host, self.port), 
-                                    urlencode(params))
+
+        r = requests.put('%s/proxy/%s/limit' % (self.host, self.port),
+                         urlencode(params))
         return r.status_code
 
     def close(self):

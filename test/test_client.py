@@ -2,17 +2,19 @@ import os.path
 import pytest
 import sys
 
+
 def setup_module(module):
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 
 class TestClient(object):
     def setup_method(self, method):
         from browsermobproxy.client import Client
         self.client = Client("http://localhost:9090")
-        
+
     def teardown_method(self, method):
         self.client.close()
-        
+
     def test_headers_type(self):
         """
         /proxy/:port/headers needs to take a dictionary
@@ -36,7 +38,7 @@ class TestClient(object):
         """
         status_code, har = self.client.new_har()
         assert(status_code == 204)
-        assert(har == None)
+        assert(har is None)
         status_code, har = self.client.new_har()
         assert(status_code == 200)
         assert('log' in har)
@@ -49,7 +51,7 @@ class TestClient(object):
         """
         status_code, har = self.client.new_har("elephants")
         assert(status_code == 204)
-        assert(har == None)
+        assert(har is None)
         status_code, har = self.client.new_har("elephants")
         assert(status_code == 200)
         assert('elephants' == har["log"]["pages"][0]['id'])
@@ -83,7 +85,7 @@ class TestClient(object):
         """
         status_code = self.client.whitelist("http://www\\.facebook\\.com/.*", 200)
         assert(status_code == 200)
-        
+
     def test_multiple_whitelists(self):
         """
         /proxy/:port/whitelist
@@ -91,7 +93,7 @@ class TestClient(object):
         """
         status_code = self.client.whitelist("http://www\\.facebook\\.com/.*,http://cdn\\.twitter\\.com", 200)
         assert(status_code == 200)
-        
+
     def test_blacklist(self):
         """
         /proxy/:port/blacklist
@@ -124,7 +126,7 @@ class TestClient(object):
         limits = {"upstream_kbps": 320, "downstream_kbps": 560, "latency": 30}
         status_code = self.client.limits(limits)
         assert(status_code == 200)
-        
+
     def test_close(self):
         """
         /proxy/:port
