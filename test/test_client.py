@@ -14,10 +14,30 @@ class TestClient(object):
         pass
         
     def test_headers_type(self):
+        """
+        /proxy/:port/headers needs to take a dictionary
+        """
         with pytest.raises(TypeError):
             self.client.headers(['foo'])
 
     def test_headers_content(self):
+        """
+        /proxy/:port/headers needs to take a dictionary
+        and returns 200 when its successful
+        """
         s = self.client.headers({'User-Agent': 'rubber ducks floating in a row'})
         assert(s == 200)
+
+    def test_new_har(self):
+        """
+        /proxy/:port/headers needs to take a dictionary
+        and returns 204 when creating a har with a particular name the first time
+        and returns 200 and the previous har when creating one with the same name
+        """
+        status_code, har = self.client.new_har()
+        assert(status_code == 204)
+        assert(har == None)
+        status_code, har = self.client.new_har()
+        assert(status_code == 200)
+        assert('log' in har)
     

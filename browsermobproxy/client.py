@@ -38,8 +38,9 @@ class Client(object):
         :Args:
          - ref: A reference for the HAR. Defaults to None
         """
-        requests.put('%s/proxy/%s/har' % (self.host, self.port), 
+        r = requests.put('%s/proxy/%s/har' % (self.host, self.port), 
                                     ref or '')
+        return (r.status_code, r.json)
 
     def new_page(self, ref):
         """
