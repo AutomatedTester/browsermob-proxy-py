@@ -11,7 +11,7 @@ class TestClient(object):
         self.client = Client("http://localhost:9090")
         
     def teardown_method(self, method):
-        pass
+        self.client.close()
         
     def test_headers_type(self):
         """
