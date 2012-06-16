@@ -45,17 +45,19 @@ class Client(object):
         r = requests.put('%s/proxy/%s/har' % (self.host, self.port), payload)
         return (r.status_code, r.json)
 
-    def new_page(self, ref):
+    def new_page(self, ref=None):
         """
         This sets a new page to be recorded
         :Args:
          - ref: A reference for the new page. Defaults to None
         """
-        resp = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port), 
-                                    ref or '')
-        if resp.content:
-            return json.loads(resp.content)
-
+        if ref:
+            payload = {"pageRef": ref}
+        else:
+            payload = {}
+        r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port), payload)
+        return r.status_code
+        
     @property
     def har(self):
         """
