@@ -124,4 +124,13 @@ class TestClient(object):
         limits = {"upstream_kbps": 320, "downstream_kbps": 560, "latency": 30}
         status_code = self.client.limits(limits)
         assert(status_code == 200)
-
+        
+    def test_close(self):
+        """
+        /proxy/:port
+        close the proxy port
+        """
+        status_code = self.client.close()
+        assert(status_code == 200)
+        status_code = self.client.close()
+        assert(status_code == 500)

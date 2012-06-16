@@ -149,4 +149,5 @@ class Client(object):
         """
         shuts down the proxy and closes the port
         """
-        resp = requests.delete('%s/proxy/%s' % (self.host, self.port))
+        r = requests.delete('%s/proxy/%s' % (self.host, self.port))
+        return r.status_code
