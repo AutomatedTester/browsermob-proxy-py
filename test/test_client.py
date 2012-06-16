@@ -91,3 +91,11 @@ class TestClient(object):
         """
         status_code = self.client.whitelist("http://www\\.facebook\\.com/.*,http://cdn\\.twitter\\.com", 200)
         assert(status_code == 200)
+        
+    def test_blacklist(self):
+        """
+        /proxy/:port/blacklist
+        adds a blacklist
+        """
+        status_code = self.client.blacklist("http://www\\.facebook\\.com/.*", 200)
+        assert(status_code == 200)

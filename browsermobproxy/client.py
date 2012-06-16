@@ -109,9 +109,10 @@ class Client(object):
          - status_code: the HTTP status code to return for URLs that do not match the blacklist 
 
         """
-        resp = requests.put('%s/proxy/%s/blacklist' % (self.host, self.port), 
+        r = requests.put('%s/proxy/%s/blacklist' % (self.host, self.port), 
                                     urlencode({ 'regex': regexp, 'status': status_code
                                     }))
+        return r.status_code
 
     LIMITS = {
         'upstream_kbps' : 'upstreamKbps',
