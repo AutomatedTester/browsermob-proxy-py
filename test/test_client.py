@@ -75,3 +75,19 @@ class TestClient(object):
         har = self.client.har
         assert(len(har["log"]["pages"]) == 2)
         assert(har["log"]["pages"][1]["id"] == "buttress")
+
+    def test_single_whitelist(self):
+        """
+        /proxy/:port/whitelist
+        adds a whitelist
+        """
+        status_code = self.client.whitelist("http://www\\.facebook\\.com/.*", 200)
+        assert(status_code == 200)
+        
+    def test_multiple_whitelists(self):
+        """
+        /proxy/:port/whitelist
+        adds a whitelist
+        """
+        status_code = self.client.whitelist("http://www\\.facebook\\.com/.*,http://cdn\\.twitter\\.com", 200)
+        assert(status_code == 200)

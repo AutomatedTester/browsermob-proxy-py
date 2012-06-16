@@ -95,9 +95,10 @@ class Client(object):
          - status_code: the HTTP status code to return for URLs that do not match the whitelist 
 
         """
-        resp = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port), 
+        r = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port), 
                                     urlencode({ 'regex': regexp, 'status': status_code
                                     }))
+        return r.status_code
 
 
     def blacklist(self, regexp, status_code):
