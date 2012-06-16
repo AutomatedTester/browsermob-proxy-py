@@ -99,3 +99,29 @@ class TestClient(object):
         """
         status_code = self.client.blacklist("http://www\\.facebook\\.com/.*", 200)
         assert(status_code == 200)
+
+    def test_limits_invalid_key(self):
+        """
+        /proxy/:port/limits
+        pre-sending checking that the parameter is correct
+        """
+        with pytest.raises(KeyError):
+            self.client.limits({"hurray": "explosions"})
+
+    def test_limits_key_no_value(self):
+        """
+        /proxy/:port/limits
+        pre-sending checking that a parameter exists
+        """
+        with pytest.raises(KeyError):
+            self.client.limits({})
+
+    def test_limits_key_no_value(self):
+        """
+        /proxy/:port/limits
+        can send all 3 at once based on the proxy implementation
+        """
+        limits = {"upstream_kbps": 320, "downstream_kbps": 560, "latency": 30}
+        status_code = self.client.limits(limits)
+        assert(status_code == 200)
+

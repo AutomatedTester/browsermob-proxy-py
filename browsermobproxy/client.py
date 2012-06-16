@@ -134,15 +134,16 @@ class Client(object):
 
         for (k, v) in options.items():
             if not self.LIMITS.has_key(k):
-                raise Exception('invalid key: %s' % k)
+                raise KeyError('invalid key: %s' % k)
 
             params[self.LIMITS[k]] = int(v)
 
         if len(params.items()) == 0:
-            raise Exception("You need to specify one of the valid Keys")
+            raise KeyError("You need to specify one of the valid Keys")
         
-        resp = requests.put('%s/proxy/%s/limit' % (self.host, self.port), 
+        r = requests.put('%s/proxy/%s/limit' % (self.host, self.port), 
                                     urlencode(params))
+        return r.status_code
 
     def close(self):
         """
