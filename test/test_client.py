@@ -22,7 +22,7 @@ class TestClient(object):
 
     def test_headers_content(self):
         """
-        /proxy/:port/headers needs to take a dictionary
+        /proxy/:port/har needs to take a dictionary
         and returns 200 when its successful
         """
         s = self.client.headers({'User-Agent': 'rubber ducks floating in a row'})
@@ -30,7 +30,7 @@ class TestClient(object):
 
     def test_new_har(self):
         """
-        /proxy/:port/headers needs to take a dictionary
+        /proxy/:port/har needs to take a dictionary
         and returns 204 when creating a har with a particular name the first time
         and returns 200 and the previous har when creating one with the same name
         """
