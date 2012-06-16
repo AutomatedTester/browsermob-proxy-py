@@ -63,9 +63,9 @@ class Client(object):
         """
         Gets the HAR that has been recorded
         """
-        resp = requests.get('%s/proxy/%s/har' % (self.host, self.port))
+        r = requests.get('%s/proxy/%s/har' % (self.host, self.port))
                                     
-        return json.loads(resp.content)
+        return r.json
 
     def selenium_proxy(self):
         """
