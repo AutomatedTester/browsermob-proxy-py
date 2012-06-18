@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='browsermob-proxy',
-      version='0.1.0',
+      version='0.1.1',
       description='A library for interacting with the Browsermob Proxy',
       author='David Burns',
       author_email='david.burns at theautomatedtester dot co dot uk',
@@ -16,5 +16,5 @@ setup(name='browsermob-proxy',
                   'Topic :: Software Development :: Libraries',
                   'Programming Language :: Python'],
         packages = find_packages(),
-        install_requires=['requests==0.10.7'],
+        install_requires=['requests>=0.12.1'],
         )
