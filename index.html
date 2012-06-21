@@ -18,7 +18,7 @@
                 from browsermobproxy import Server
                 server = Server("path/to/browsermob-proxy")
                 server.start()
-                proxy = server.create_proxy
+                proxy = server.create_proxy()
 
                 from selenium import webdriver
                 profile  = webdriver.FirefoxProfile()
@@ -36,7 +36,25 @@
     </p>
     <p>
       <h2>Releases</h2>
-      <a href="http://pypi.python.org/pypi/browsermob-proxy"><h3>0.1.0</h3></a>
+      <a href="http://pypi.python.org/pypi/browsermob-proxy"><h3>0.2.0</h3></a>
+      <ul>
+        <li> DELETE /proxy/:port/
+        <li>/proxy/:port/limits
+        <li>/proxy/:port/blacklist
+        <li>/proxy/:port/whitelist
+        <li>fixing /proxy/:port/har/pageRef
+        <li>fixing /proxy/:port/har/pageRef
+        <li>fixing passing in a page ref as the name for the page in /proxy/:port/har
+        <li>tests around /proxy/:port/har and some cleanup of the implementation
+        <li>make /proxy/:port/headers work
+        <li>wrapping selenium_proxy with webdriver_proxy since the project is more than just webdriver
+        <li>extending the client to play nice with remote webdriver instances
+        <li>create_proxy sounds and feels like a method to me, let's make it so
+        <li>ensure the self.process exist, to reduce possibilities of AttributeError
+        <li>check the path before attempting to start the server
+        <li>wait longer than 3 seconds for the server to come up
+      </ul>
+      <h3>0.1.0</h3>
       <ul>
         <li>Remove HTTPLib2 and replace with Requests</li>
         <li>Added support for setting headers in the proxy</li>
