@@ -14,7 +14,7 @@ Manually:
 from browsermobproxy import Server
 server = Server("path/to/browsermob-proxy")
 server.start()
-proxy = server.create_proxy
+proxy = server.create_proxy()
 
 from selenium import webdriver
 profile  = webdriver.FirefoxProfile()
