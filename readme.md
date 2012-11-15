@@ -37,7 +37,7 @@ See also
 --------
 
 * http://proxy.browsermob.com/
-* https://github.com/lightbody/browsermob-proxy
+* https://github.com/webmetrics/browsermob-proxy
 
 Note on Patches/Pull Requests
 -----------------------------
