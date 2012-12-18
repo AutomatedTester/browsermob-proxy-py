@@ -30,6 +30,21 @@ class TestClient(object):
         s = self.client.headers({'User-Agent': 'rubber ducks floating in a row'})
         assert(s == 200)
 
+    def test_hosts_type(self):
+        """
+        /proxy/:port/hosts needs to take a dictionary
+        """
+        with pytest.raises(TypeError):
+            self.client.hosts(['foo'])
+
+    def test_hosts_content(self):
+        """
+        /proxy/:port/hosts needs to take a dictionary
+        and returns 200 when its successful
+        """
+        s = self.client.hosts({'www.example.com': '127.0.0.1'})
+        assert(s == 200)
+
     def test_new_har(self):
         """
         /proxy/:port/har
