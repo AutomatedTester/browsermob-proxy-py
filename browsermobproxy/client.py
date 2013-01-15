@@ -143,6 +143,18 @@ class Client(object):
                          urlencode(params))
         return r.status_code
 
+    def remap_hosts(self, address, ip_address):
+        """
+        Remap the hosts for a specific URL
+        :Args:
+         - address - url that you wish to remap
+         - ip_address - IP Address that will handle all traffic for the address passed in
+        """
+        assert address is not None and ip_address is not None
+        r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
+                          urlencode({address: ip_address}))
+        return r.status_code
+
     def close(self):
         """
         shuts down the proxy and closes the port
