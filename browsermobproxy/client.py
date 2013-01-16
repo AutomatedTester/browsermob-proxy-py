@@ -151,8 +151,9 @@ class Client(object):
          - ip_address - IP Address that will handle all traffic for the address passed in
         """
         assert address is not None and ip_address is not None
-        r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
-                          urlencode({address: ip_address}))
+        r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port), 
+                         json.dumps({address: ip_address}),
+                          headers={'content-type': 'application/json'})
         return r.status_code
 
     def close(self):
