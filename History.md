@@ -1,4 +1,15 @@
 
+0.4.0 / 2013-03-06 
+==================
+
+  * Allow setting basic authentication
+  * Adding the ability to remap hosts which is available from BrowserMob Proxy Beta 7
+  * Merge pull request #6 from lukeis/patch-2
+  * Update readme.md
+  * initial commit of event listener to auto do record
+  * server.create_proxy is a function, should be called :)
+  * forgot to add the port
+
 0.2.0 / 2012-06-18 
 ==================
 
