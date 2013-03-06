@@ -4,9 +4,9 @@ python:
   - 2.7
 before_script:
   - sudo apt-get install -y unzip
-  - curl -k -L -O https://github.com/downloads/webmetrics/browsermob-proxy/browsermob-proxy-2.0-beta-6-bin.zip
-  - unzip browsermob-proxy-2.0-beta-6-bin.zip
-  - export BROWSERMOB_PROXY_HOME=`pwd`/browsermob-proxy-2.0-beta-6
+  - curl -k -L -O http://dl.dropbox.com/u/1995643/browsermob-proxy/browsermob-proxy-2.0-beta-7-bin.zip
+  - unzip browsermob-proxy-2.0-beta-7-bin.zip
+  - export BROWSERMOB_PROXY_HOME=`pwd`/browsermob-proxy-2.0-beta-7
   - sh $BROWSERMOB_PROXY_HOME/bin/browsermob-proxy --port=9090 &
 install: pip install pytest
 script: python setup.py develop && py.test test
