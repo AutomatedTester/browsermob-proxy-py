@@ -113,6 +113,19 @@ class Client(object):
                          urlencode({'regex': regexp, 'status': status_code}))
         return r.status_code
 
+    def basic_authentication(self, domain, username, password):
+        """
+        This add automatic basic authentication
+        :Args:
+         - domain: domain to set authentication credentials for
+         - username: valid username to use when authenticating
+         - password: valid password to use when authenticating
+         """
+        r = requests.post(url='%s/proxy/%s/auth/basic/%s' % (self.host, self.port, domain),
+                          data=json.dumps({'username': username, 'password': password}),
+                          headers={'content-type': 'application/json'})
+        return r.status_code
+
     LIMITS = {
         'upstream_kbps': 'upstreamKbps',
         'downstream_kbps': 'downstreamKbps',

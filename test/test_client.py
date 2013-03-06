@@ -102,6 +102,14 @@ class TestClient(object):
         status_code = self.client.blacklist("http://www\\.facebook\\.com/.*", 200)
         assert(status_code == 200)
 
+    def test_basic_authentication(self):
+        """
+        /proxy/:port/auth/basic
+        adds automatic basic authentication
+        """
+        status_code = self.client.basic_authentication("www.example.com", "myUsername", "myPassword")
+        assert(status_code == 200)
+
     def test_limits_invalid_key(self):
         """
         /proxy/:port/limits
