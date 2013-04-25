@@ -1,8 +1,9 @@
 import os
-from subprocess import Popen, PIPE, STDOUT
-import socket
-import time
 import platform
+import socket
+import subprocess
+import time
+
 from client import Client
 
 
@@ -41,7 +42,10 @@ class Server(object):
         This will start the browsermob proxy and then wait until it can
         interact with it
         """
-        self.process = Popen(self.command, stdout=PIPE, stderr=STDOUT)
+        self.log_file = open(os.path.abspath('server.log'), 'w')
+        self.process = subprocess.Popen(self.command,
+                                        stdout=self.log_file,
+                                        stderr=subprocess.STDOUT)
         count = 0
         while not self._is_listening():
             time.sleep(0.5)
@@ -63,6 +67,8 @@ class Server(object):
         except AttributeError:
             # kill may not be available under windows environment
             pass
+
+        self.log_file.close()
 
     @property
     def url(self):
