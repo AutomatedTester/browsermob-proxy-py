@@ -1,7 +1,6 @@
 import requests
 from urllib import urlencode
 import json
-from selenium.webdriver.common.proxy import ProxyType
 
 class Client(object):
     def __init__(self, url):
