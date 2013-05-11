@@ -83,7 +83,7 @@ class Server(object):
         Gets a client class that allow to set all the proxy details that you
         may need to.
         """
-        client = Client(self.url)
+        client = Client(self.url[7:])
         return client
 
     def _is_listening(self):
