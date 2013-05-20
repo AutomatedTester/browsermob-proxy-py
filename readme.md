@@ -31,6 +31,18 @@ driver.quit()
 
 ```
 
+Running Tests
+-------------
+To run the tests in a CI environment, disable the ones that require human
+judgement by using
+
+```bash
+$ py.test -m "not human" test
+```
+
+If you are going to watch the test, the 'human' ones should display an english
+muffin instead of the american flag on the 'pick your version' page. Or at
+least it does from Canada.
 
 
 See also
