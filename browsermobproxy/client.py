@@ -30,7 +30,10 @@ class Client(object):
         Returns a Selenium WebDriver Proxy class with details of the HTTP Proxy
         """
         from selenium import webdriver
-        return webdriver.Proxy({"httpProxy": self.proxy})
+        return webdriver.Proxy({
+            "httpProxy": self.proxy,
+            "sslProxy": self.proxy,
+        })
 
     def webdriver_proxy(self):
         """
