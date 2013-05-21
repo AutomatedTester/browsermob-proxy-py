@@ -47,7 +47,7 @@ class Client(object):
         Adds an 'proxy' entry to a desired capabilities dictionary with the
         BrowserMob proxy information
         """
-        capabilities['proxy'] = {'proxyType': "manual",
+        capabilities['proxy'] = {'proxyType': "MANUAL",
                                  'httpProxy': self.proxy}
 
     def add_to_webdriver_capabilities(self, capabilities):
