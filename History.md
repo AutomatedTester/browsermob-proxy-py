@@ -1,4 +1,10 @@
 
+0.5.0 / 2013-05-23 
+==================
+* Allow proxying of ssl requests with selenium.
+* Updating case for proxy type
+
+
 0.4.0 / 2013-03-06 
 ==================
 
