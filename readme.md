@@ -31,6 +31,14 @@ driver.quit()
 
 ```
 
+for Chrome use
+
+```
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--proxy-server={0}".format(proxy.proxy))
+browser = webdriver.Chrome(chrome_options = chrome_options)
+```
+
 Running Tests
 -------------
 To run the tests in a CI environment, disable the ones that require human

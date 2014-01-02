@@ -9,7 +9,7 @@ from client import Client
 
 class Server(object):
 
-    def __init__(self, path, options={}):
+    def __init__(self, path = 'browsermob-proxy', options={}):
         """
         Initialises a Server object
 
@@ -19,11 +19,19 @@ class Server(object):
                      More items will be added in the future.
                      This defaults to an empty dictionary
         """
+        path_var_sep = ':'
         if platform.system() == 'Windows':
+            path_var_sep = ';'
             if not path.endswith('.bat'):
                 path += '.bat'
 
-        if not os.path.isfile(path):
+        exec_not_on_path = True
+        for directory in os.environ['PATH'].split(path_var_sep):
+            if(os.path.isfile(os.path.join(directory, path))):
+                exec_not_on_path = False
+                break
+
+        if not os.path.isfile(path) and exec_not_on_path:
             raise Exception("Browsermob-Proxy binary couldn't be found in path"
                             " provided: %s" % path)
 
