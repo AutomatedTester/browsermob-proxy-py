@@ -4,9 +4,9 @@ python:
   - 2.7
 before_script:
   - sudo apt-get install -y unzip
-  - curl -k -L -O https://s3-us-west-1.amazonaws.com/lightbody-bmp/browsermob-proxy-2.0-beta-8-bin.zip
-  - unzip browsermob-proxy-2.0-beta-8-bin.zip
-  - export BROWSERMOB_PROXY_HOME=`pwd`/browsermob-proxy-2.0-beta-8
+  - curl -k -L -O https://github.com/lightbody/browsermob-proxy/archive/browsermob-proxy-2.0-beta-9.zip
+  - unzip browsermob-proxy-2.0-beta-9-bin.zip
+  - export BROWSERMOB_PROXY_HOME=`pwd`/browsermob-proxy-2.0-beta-9
   - sh $BROWSERMOB_PROXY_HOME/bin/browsermob-proxy --port=9090 &
 install: pip install pytest selenium
 script: python setup.py develop && py.test -m "not human" test
