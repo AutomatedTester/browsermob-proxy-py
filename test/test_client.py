@@ -55,6 +55,19 @@ class TestClient(object):
         assert(status_code == 200)
         assert('elephants' == har["log"]["pages"][0]['id'])
 
+    def test_new_har(self):
+        """
+        /proxy/:port/har
+        and returns 204 when creating a har with a particular name the first time
+        and returns 200 and the previous har when creating one with the same name
+        """
+        status_code, har = self.client.new_har("monkeys", True)
+        assert(status_code == 204)
+        assert(har is None)
+        status_code, har = self.client.new_har("monkeys", True)
+        assert(status_code == 200)
+        assert('monkeys' == har["log"]["pages"][0]['id'])
+
     def test_new_page_defaults(self):
         """
         /proxy/:port/pageRef

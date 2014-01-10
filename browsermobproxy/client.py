@@ -63,7 +63,7 @@ class Client(object):
 
         return r.json()
 
-    def new_har(self, ref=None):
+    def new_har(self, ref=None, httpheaders=False):
         """
         This sets a new HAR to be recorded
         :Args:
@@ -73,13 +73,16 @@ class Client(object):
             payload = {"initialPageRef": ref}
         else:
             payload = {}
-        r = requests.put('%s/proxy/%s/har' % (self.host, self.port), payload)
+        if httpheaders:
+            r = requests.put('%s/proxy/%s/har?captureHeaders=true' % (self.host, self.port), payload)
+        else:
+            r = requests.put('%s/proxy/%s/har' % (self.host, self.port), payload)
         if r.status_code == 200:
             return (r.status_code, r.json())
         else:
             return (r.status_code, None)
 
-    def new_page(self, ref=None):
+    def new_page(self, ref=None, httpheaders=False):
         """
         This sets a new page to be recorded
         :Args:
@@ -89,8 +92,12 @@ class Client(object):
             payload = {"pageRef": ref}
         else:
             payload = {}
-        r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port),
-                         payload)
+        if httpheaders:
+            r = requests.put('%s/proxy/%s/har/pageRef?captureHeaders=true' % (self.host, self.port),
+                             payload)
+        else:
+            r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port),
+                             payload)
         return r.status_code
 
     def blacklist(self, regexp, status_code):
