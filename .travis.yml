@@ -8,5 +8,6 @@ before_script:
   - unzip browsermob-proxy-2.0-beta-9-bin.zip
   - export BROWSERMOB_PROXY_HOME=`pwd`/browsermob-proxy-2.0-beta-9
   - sh $BROWSERMOB_PROXY_HOME/bin/browsermob-proxy --port=9090 &
+  - sleep 5
 install: pip install pytest selenium
 script: python setup.py develop && py.test -m "not human" test
