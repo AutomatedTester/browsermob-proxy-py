@@ -63,7 +63,7 @@ class Client(object):
 
         return r.json()
 
-    def new_har(self, ref=None):
+    def new_har(self, ref=None, options={}):
         """
         This sets a new HAR to be recorded
         :Args:
@@ -73,6 +73,9 @@ class Client(object):
             payload = {"initialPageRef": ref}
         else:
             payload = {}
+        if options:
+            payload.update(options)
+
         r = requests.put('%s/proxy/%s/har' % (self.host, self.port), payload)
         if r.status_code == 200:
             return (r.status_code, r.json())
@@ -237,7 +240,7 @@ class Client(object):
          - ip_address - IP Address that will handle all traffic for the address passed in
         """
         assert address is not None and ip_address is not None
-        r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port), 
+        r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
                          json.dumps({address: ip_address}),
                           headers={'content-type': 'application/json'})
         return r.status_code
