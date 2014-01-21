@@ -152,7 +152,7 @@ class TestClient(object):
         status_code = self.client.close()
         assert(status_code == 200)
         status_code = self.client.close()
-        assert(status_code == 500)
+        assert(status_code == 404)
 
     def test_response_interceptor_with_parsing_js(self):
         """
