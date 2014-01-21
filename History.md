@@ -1,4 +1,13 @@
 
+0.6.0 / 2014-01-21 
+==================
+
+  * Added support for parameters in har creation
+  * Bug fixes for tests that are out of date
+  * Setup server constructor to look on path for location of browsermob-proxy executable. As well as looking for a file. Also added example code for using browsermob-proxy with chrome
+  * Fix project name
+  * adding docs
+
 0.5.0 / 2013-05-23 
 ==================
 * Allow proxying of ssl requests with selenium.
