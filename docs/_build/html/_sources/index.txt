@@ -12,7 +12,7 @@ Python client for the BrowserMob Proxy 2.0 REST API.
 How to install
 --------------
 
-Bleach is available on PyPI_, so you can install it with ``pip``::
+BrowserMob Proxy is available on PyPI_, so you can install it with ``pip``::
 
     $ pip install browsermob-proxy
 
