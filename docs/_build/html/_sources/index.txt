@@ -4,6 +4,8 @@
    contain the root `toctree` directive.
 .. highlightlang:: python
 
+
+
 Welcome to BrowserMob Proxy's documentation!
 ============================================
 
@@ -26,7 +28,7 @@ Or by cloning the repo from GitHub_::
 
 Then install it by running::
 
-    $ python setup.py install`
+    $ python setup.py install
 
 How to use with selenium-webdriver
 ----------------------------------
@@ -56,7 +58,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-
+   client.rst
+   server.rst
 
 Indices and tables
 ==================

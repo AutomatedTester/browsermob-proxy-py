@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>client Package &mdash; BrowserMob Proxy 0.6.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="BrowserMob Proxy 0.6.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">BrowserMob Proxy 0.6.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="module-browsermobproxy">
+<span id="client-package"></span><h1><tt class="xref py py-mod docutils literal"><span class="pre">client</span></tt> Package<a class="headerlink" href="#module-browsermobproxy" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="browsermobproxy.Client">
+<em class="property">class </em><tt class="descclassname">browsermobproxy.</tt><tt class="descname">Client</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="browsermobproxy.Client.add_to_capabilities">
+<tt class="descname">add_to_capabilities</tt><big>(</big><em>capabilities</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.add_to_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an &#8216;proxy&#8217; entry to a desired capabilities dictionary with the
+BrowserMob proxy information</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.basic_authentication">
+<tt class="descname">basic_authentication</tt><big>(</big><em>domain</em>, <em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.basic_authentication" title="Permalink to this definition">¶</a></dt>
+<dd><p>This add automatic basic authentication
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>domain: domain to set authentication credentials for</li>
+<li>username: valid username to use when authenticating</li>
+<li>password: valid password to use when authenticating</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.blacklist">
+<tt class="descname">blacklist</tt><big>(</big><em>regexp</em>, <em>status_code</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.blacklist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a list of URL patterns to blacklist
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>regex: a comma separated list of regular expressions</li>
+<li>status_code: the HTTP status code to return for URLs that do not
+match the blacklist</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.clear_dns_cache">
+<tt class="descname">clear_dns_cache</tt><big>(</big><big>)</big><a class="headerlink" href="#browsermobproxy.Client.clear_dns_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the DNS cache associated with the proxy instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#browsermobproxy.Client.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>shuts down the proxy and closes the port</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="browsermobproxy.Client.har">
+<tt class="descname">har</tt><a class="headerlink" href="#browsermobproxy.Client.har" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the HAR that has been recorded</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.headers">
+<tt class="descname">headers</tt><big>(</big><em>headers</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets the headers that will set by the proxy on all requests
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>headers: this is a dictionary of the headers to be set</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.limits">
+<tt class="descname">limits</tt><big>(</big><em>options</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Limit the bandwidth through the proxy.
+:Args:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>options: A dictionary with all the details you want to set.</dt>
+<dd><p class="first last">downstreamKbps - Sets the downstream kbps
+upstreamKbps - Sets the upstream kbps
+latency - Add the given latency to each HTTP request</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.new_har">
+<tt class="descname">new_har</tt><big>(</big><em>ref=None</em>, <em>options={}</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.new_har" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets a new HAR to be recorded
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ref: A reference for the HAR. Defaults to None</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.new_page">
+<tt class="descname">new_page</tt><big>(</big><em>ref=None</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.new_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets a new page to be recorded
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ref: A reference for the new page. Defaults to None</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.remap_hosts">
+<tt class="descname">remap_hosts</tt><big>(</big><em>address</em>, <em>ip_address</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.remap_hosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remap the hosts for a specific URL
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>address - url that you wish to remap</li>
+<li>ip_address - IP Address that will handle all traffic for the address passed in</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.request_interceptor">
+<tt class="descname">request_interceptor</tt><big>(</big><em>js</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.request_interceptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the javascript against each request
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>js: the javascript to execute</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.response_interceptor">
+<tt class="descname">response_interceptor</tt><big>(</big><em>js</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.response_interceptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the javascript against each response
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>js: the javascript to execute</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.retry">
+<tt class="descname">retry</tt><big>(</big><em>retry_count</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.retry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retries. No idea what its used for, but its in the API...
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>retry_count - the number of retries</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.rewrite_url">
+<tt class="descname">rewrite_url</tt><big>(</big><em>match</em>, <em>replace</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.rewrite_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewrites the requested url.
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>match - a regex to match requests with</li>
+<li>replace - a string to replace the matches with</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.selenium_proxy">
+<tt class="descname">selenium_proxy</tt><big>(</big><big>)</big><a class="headerlink" href="#browsermobproxy.Client.selenium_proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Selenium WebDriver Proxy class with details of the HTTP Proxy</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.timeouts">
+<tt class="descname">timeouts</tt><big>(</big><em>options</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.timeouts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure various timeouts in the proxy
+:Args:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>options: A dictionary with all the details you want to set.</dt>
+<dd><p class="first last">request - request timeout (in seconds)
+read - read timeout (in seconds)
+connection - connection timeout (in seconds)
+dns - dns lookup timeout (in seconds)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.wait_for_traffic_to_stop">
+<tt class="descname">wait_for_traffic_to_stop</tt><big>(</big><em>quiet_period</em>, <em>timeout</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.wait_for_traffic_to_stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits for the network to be quiet
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>quiet_period - number of seconds the network needs to be quiet for</li>
+<li>timeout - max number of seconds to wait</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.webdriver_proxy">
+<tt class="descname">webdriver_proxy</tt><big>(</big><big>)</big><a class="headerlink" href="#browsermobproxy.Client.webdriver_proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Selenium WebDriver Proxy class with details of the HTTP Proxy</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="browsermobproxy.Client.whitelist">
+<tt class="descname">whitelist</tt><big>(</big><em>regexp</em>, <em>status_code</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.whitelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a list of URL patterns to whitelist
+:Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>regex: a comma separated list of regular expressions</li>
+<li>status_code: the HTTP status code to return for URLs that do not
+match the whitelist</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/client.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">BrowserMob Proxy 0.6.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, David Burns.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
