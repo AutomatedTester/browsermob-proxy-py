@@ -1,2 +1,5 @@
 *.swp
 *.swo
+browsermob_proxy.egg-info/
+browsermobproxy/
+dist/
