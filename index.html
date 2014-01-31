@@ -9,7 +9,7 @@
     <div class='container'> 
     <h1>Python Browsermob Proxy Library</h1>
     <p>
-      This is the Python Library for interaction with the Browsermob Proxy. It allows us to create a proxy, set references and generate HAR representations. For more details read the <a href="docs/index.html">Pydocs</a>. Note that this will only work with Selenium 2.17 onwards.
+      This is the Python Library for interaction with the Browsermob Proxy. It allows us to create a proxy, set references and generate HAR representations. For more details read the <a href="http://browsermob-proxy-py.readthedocs.org/en/latest/">docs</a>. Note that this will only work with Selenium 2.17 onwards.
     </p>
     <p>
         <h2>Example</h2>
@@ -36,7 +36,32 @@
     </p>
     <p>
       <h2>Releases</h2>
-      <a href="http://pypi.python.org/pypi/browsermob-proxy"><h3>0.2.0</h3></a>
+      <a href="http://pypi.python.org/pypi/browsermob-proxy"><h3>0.6.0</h3></a>
+      <ul>
+        <li>Added support for parameters in har creation
+        <li>Bug fixes for tests that are out of date
+        <li>Setup server constructor to look on path for location of browsermob-proxy executable. As well as looking for a file. Also added example code for using browsermob-proxy with chrome
+        <li>Fix project name
+        <li>adding docs
+      </ul>
+
+      <h3>0.5.0</h3>
+      <ul>
+        <li>Allow proxying of ssl requests with selenium.
+        <li>Updating case for proxy type
+      </ul>
+
+      <h3>0.4.0</h3>
+      <ul>
+        <li>Allow setting basic authentication
+        <li>Adding the ability to remap hosts which is available from BrowserMob Proxy Beta 7
+        <li>Merge pull request #6 from lukeis/patch-2
+        <li>Update readme.md
+        <li>initial commit of event listener to auto do record
+        <li>server.create_proxy is a function, should be called :)
+        <li>forgot to add the port
+      </ul>
+      <h3>0.2.0</h3></a>
       <ul>
         <li> DELETE /proxy/:port/
         <li>/proxy/:port/limits
