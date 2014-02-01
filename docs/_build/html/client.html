@@ -71,20 +71,47 @@ BrowserMob proxy information</p>
 <dl class="method">
 <dt id="browsermobproxy.Client.basic_authentication">
 <tt class="descname">basic_authentication</tt><big>(</big><em>domain</em>, <em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.basic_authentication" title="Permalink to this definition">¶</a></dt>
-<dd><p>This add automatic basic authentication
-:Args:
-- domain: domain to set authentication credentials for
-- username: valid username to use when authenticating
-- password: valid password to use when authenticating</p>
+<dd><p>This add automatic basic authentication</p>
+<ul>
+<li><dl class="first docutils">
+<dt>domain: unicode</dt>
+<dd><p class="first last">domain to set authentication credentials for</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>username: unicode</dt>
+<dd><p class="first last">valid username to use when authenticating</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>password: unicode</dt>
+<dd><p class="first last">valid password to use when authenticating</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.blacklist">
 <tt class="descname">blacklist</tt><big>(</big><em>regexp</em>, <em>status_code</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.blacklist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a list of URL patterns to blacklist
-:Args:
-- regex: a comma separated list of regular expressions
-- status_code: the HTTP status code to return for URLs that do not             match the blacklist</p>
+<dd><p>Sets a list of URL patterns to blacklist</p>
+<ul>
+<li><dl class="first docutils">
+<dt>regex: unicode</dt>
+<dd><p class="first last">a comma separated list of regular expressions</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>status_code: unicode</dt>
+<dd><p class="first last">the HTTP status code to return for URLs that do not                        match the blacklist</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -108,76 +135,145 @@ BrowserMob proxy information</p>
 <dl class="method">
 <dt id="browsermobproxy.Client.headers">
 <tt class="descname">headers</tt><big>(</big><em>headers</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.headers" title="Permalink to this definition">¶</a></dt>
-<dd><p>This sets the headers that will set by the proxy on all requests
-:Args:
-- headers: this is a dictionary of the headers to be set</p>
+<dd><p>This sets the headers that will set by the proxy on all requests</p>
+<ul>
+<li><dl class="first docutils">
+<dt>headers: dict</dt>
+<dd><p class="first last">this is a dictionary of the headers to be set</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.limits">
 <tt class="descname">limits</tt><big>(</big><em>options</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.limits" title="Permalink to this definition">¶</a></dt>
-<dd><p>Limit the bandwidth through the proxy.
-:Args:
-- options: A dictionary with all the details you want to set.                         downstreamKbps - Sets the downstream kbps                         upstreamKbps - Sets the upstream kbps                         latency - Add the given latency to each HTTP request</p>
+<dd><p>Limit the bandwidth through the proxy.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>options: dict</dt>
+<dd><p class="first last">A dictionary with all the details you want to set.                         downstreamKbps - Sets the downstream kbps                         upstreamKbps - Sets the upstream kbps                         latency - Add the given latency to each HTTP request</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.new_har">
 <tt class="descname">new_har</tt><big>(</big><em>ref=None</em>, <em>options={}</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.new_har" title="Permalink to this definition">¶</a></dt>
-<dd><p>This sets a new HAR to be recorded
-:Args:
-- ref: A reference for the HAR. Defaults to None
-- options: A dictionary that will be passed to BrowserMob Proxy                    with specific keywords. Keywords are:                     captureHeaders - Boolean, capture headers                     captureContent - Boolean, capture content bodies                     captureBinaryContent - Boolean, capture binary content</p>
+<dd><p>This sets a new HAR to be recorded</p>
+<ul>
+<li><dl class="first docutils">
+<dt>ref: unicode</dt>
+<dd><p class="first last">A reference for the HAR. Defaults to None</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>options: dict</dt>
+<dd><p class="first last">A dictionary that will be passed to BrowserMob Proxy                    with specific keywords. Keywords are:                    captureHeaders - Boolean, capture headers                    captureContent - Boolean, capture content bodies                    captureBinaryContent - Boolean, capture binary content</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.new_page">
 <tt class="descname">new_page</tt><big>(</big><em>ref=None</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.new_page" title="Permalink to this definition">¶</a></dt>
-<dd><p>This sets a new page to be recorded
-:Args:
-- ref: A reference for the new page. Defaults to None</p>
+<dd><p>This sets a new page to be recorded</p>
+<ul>
+<li><dl class="first docutils">
+<dt>ref: unicode</dt>
+<dd><p class="first last">A reference for the new page. Defaults to None</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.remap_hosts">
 <tt class="descname">remap_hosts</tt><big>(</big><em>address</em>, <em>ip_address</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.remap_hosts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remap the hosts for a specific URL
-:Args:
-- address - url that you wish to remap
-- ip_address - IP Address that will handle all traffic for the address passed in</p>
+<dd><p>Remap the hosts for a specific URL</p>
+<ul>
+<li><dl class="first docutils">
+<dt>address: unicode</dt>
+<dd><p class="first last">url that you wish to remap</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ip_address: unicode</dt>
+<dd><p class="first last">IP Address that will handle all traffic for the address passed in</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.request_interceptor">
 <tt class="descname">request_interceptor</tt><big>(</big><em>js</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.request_interceptor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes the javascript against each request
-:Args:
-- js: the javascript to execute</p>
+<dd><p>Executes the javascript against each request</p>
+<ul>
+<li><dl class="first docutils">
+<dt>js: unicode</dt>
+<dd><p class="first last">the javascript to execute</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.response_interceptor">
 <tt class="descname">response_interceptor</tt><big>(</big><em>js</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.response_interceptor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes the javascript against each response
-:Args:
-- js: the javascript to execute</p>
+<dd><p>Executes the javascript against each response</p>
+<ul>
+<li><dl class="first docutils">
+<dt>js: unicode</dt>
+<dd><p class="first last">the javascript to execute</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.retry">
 <tt class="descname">retry</tt><big>(</big><em>retry_count</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.retry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retries. No idea what its used for, but its in the API...
-:Args:
-- retry_count - the number of retries</p>
+<dd><p>Retries. No idea what its used for, but its in the API...</p>
+<ul>
+<li><dl class="first docutils">
+<dt>retry_count: int</dt>
+<dd><p class="first last">the number of retries</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.rewrite_url">
 <tt class="descname">rewrite_url</tt><big>(</big><em>match</em>, <em>replace</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.rewrite_url" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rewrites the requested url.
-:Args:
-- match - a regex to match requests with
-- replace - a string to replace the matches with</p>
+<dd><p>Rewrites the requested url.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>match: unicode</dt>
+<dd><p class="first last">a regex to match requests with</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>replace: unicode</dt>
+<dd><p class="first last">a string to replace the matches with</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -189,18 +285,35 @@ BrowserMob proxy information</p>
 <dl class="method">
 <dt id="browsermobproxy.Client.timeouts">
 <tt class="descname">timeouts</tt><big>(</big><em>options</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.timeouts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Configure various timeouts in the proxy
-:Args:
-- options: A dictionary with all the details you want to set.                         request - request timeout (in seconds)                         read - read timeout (in seconds)                         connection - connection timeout (in seconds)                         dns - dns lookup timeout (in seconds)</p>
+<dd><p>Configure various timeouts in the proxy</p>
+<ul>
+<li><dl class="first docutils">
+<dt>options: dict</dt>
+<dd><p class="first last">A dictionary with all the details you want to set.                         request - request timeout (in seconds)                         read - read timeout (in seconds)                         connection - connection timeout (in seconds)                         dns - dns lookup timeout (in seconds)</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.wait_for_traffic_to_stop">
 <tt class="descname">wait_for_traffic_to_stop</tt><big>(</big><em>quiet_period</em>, <em>timeout</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.wait_for_traffic_to_stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Waits for the network to be quiet
-:Args:
-- quiet_period - number of seconds the network needs to be quiet for
-- timeout - max number of seconds to wait</p>
+<dd><p>Waits for the network to be quiet</p>
+<ul>
+<li><dl class="first docutils">
+<dt>quiet_period: int</dt>
+<dd><p class="first last">number of seconds the network needs to be quiet for</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>timeout: int</dt>
+<dd><p class="first last">max number of seconds to wait</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -212,10 +325,21 @@ BrowserMob proxy information</p>
 <dl class="method">
 <dt id="browsermobproxy.Client.whitelist">
 <tt class="descname">whitelist</tt><big>(</big><em>regexp</em>, <em>status_code</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.whitelist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a list of URL patterns to whitelist
-:Args:
-- regex: a comma separated list of regular expressions
-- status_code: the HTTP status code to return for URLs that do not            match the whitelist</p>
+<dd><p>Sets a list of URL patterns to whitelist</p>
+<ul>
+<li><dl class="first docutils">
+<dt>regex: unicode</dt>
+<dd><p class="first last">a comma separated list of regular expressions</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>status_code: unicode</dt>
+<dd><p class="first last">the HTTP status code to return for URLs that do not                        match the whitelist</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 </dd></dl>
