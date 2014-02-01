@@ -61,57 +61,73 @@
 <dl class="class">
 <dt id="browsermobproxy.Client">
 <em class="property">class </em><tt class="descclassname">browsermobproxy.</tt><tt class="descname">Client</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Initialises a new Client object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> &#8211; This is where the BrowserMob Proxy lives</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
 <dt id="browsermobproxy.Client.add_to_capabilities">
 <tt class="descname">add_to_capabilities</tt><big>(</big><em>capabilities</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.add_to_capabilities" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds an &#8216;proxy&#8217; entry to a desired capabilities dictionary with the
 BrowserMob proxy information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>capabilities</strong> &#8211; The Desired capabilities object from Selenium WebDriver</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.basic_authentication">
 <tt class="descname">basic_authentication</tt><big>(</big><em>domain</em>, <em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.basic_authentication" title="Permalink to this definition">¶</a></dt>
 <dd><p>This add automatic basic authentication</p>
-<ul>
-<li><dl class="first docutils">
-<dt>domain: unicode</dt>
-<dd><p class="first last">domain to set authentication credentials for</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>username: unicode</dt>
-<dd><p class="first last">valid username to use when authenticating</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>password: unicode</dt>
-<dd><p class="first last">valid password to use when authenticating</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domain</strong> &#8211; domain to set authentication credentials for</li>
+<li><strong>username</strong> &#8211; valid username to use when authenticating</li>
+<li><strong>password</strong> &#8211; valid password to use when authenticating</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.blacklist">
 <tt class="descname">blacklist</tt><big>(</big><em>regexp</em>, <em>status_code</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.blacklist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets a list of URL patterns to blacklist</p>
-<ul>
-<li><dl class="first docutils">
-<dt>regex: unicode</dt>
-<dd><p class="first last">a comma separated list of regular expressions</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>status_code: unicode</dt>
-<dd><p class="first last">the HTTP status code to return for URLs that do not                        match the blacklist</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>regex</strong> &#8211; a comma separated list of regular expressions</li>
+<li><strong>status_code</strong> &#8211; the HTTP status code to return for URLs that do not                        match the blacklist</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -136,144 +152,156 @@ BrowserMob proxy information</p>
 <dt id="browsermobproxy.Client.headers">
 <tt class="descname">headers</tt><big>(</big><em>headers</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.headers" title="Permalink to this definition">¶</a></dt>
 <dd><p>This sets the headers that will set by the proxy on all requests</p>
-<ul>
-<li><dl class="first docutils">
-<dt>headers: dict</dt>
-<dd><p class="first last">this is a dictionary of the headers to be set</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headers</strong> &#8211; this is a dictionary of the headers to be set</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.limits">
 <tt class="descname">limits</tt><big>(</big><em>options</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.limits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Limit the bandwidth through the proxy.</p>
-<ul>
-<li><dl class="first docutils">
-<dt>options: dict</dt>
-<dd><p class="first last">A dictionary with all the details you want to set.                         downstreamKbps - Sets the downstream kbps                         upstreamKbps - Sets the upstream kbps                         latency - Add the given latency to each HTTP request</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> &#8211; A dictionary with all the details you want to set.                         downstreamKbps - Sets the downstream kbps                         upstreamKbps - Sets the upstream kbps                         latency - Add the given latency to each HTTP request</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.new_har">
 <tt class="descname">new_har</tt><big>(</big><em>ref=None</em>, <em>options={}</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.new_har" title="Permalink to this definition">¶</a></dt>
 <dd><p>This sets a new HAR to be recorded</p>
-<ul>
-<li><dl class="first docutils">
-<dt>ref: unicode</dt>
-<dd><p class="first last">A reference for the HAR. Defaults to None</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>options: dict</dt>
-<dd><p class="first last">A dictionary that will be passed to BrowserMob Proxy                    with specific keywords. Keywords are:                    captureHeaders - Boolean, capture headers                    captureContent - Boolean, capture content bodies                    captureBinaryContent - Boolean, capture binary content</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ref</strong> &#8211; A reference for the HAR. Defaults to None</li>
+<li><strong>options</strong> &#8211; A dictionary that will be passed to BrowserMob Proxy                    with specific keywords. Keywords are:                    captureHeaders - Boolean, capture headers                    captureContent - Boolean, capture content bodies                    captureBinaryContent - Boolean, capture binary content</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.new_page">
 <tt class="descname">new_page</tt><big>(</big><em>ref=None</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.new_page" title="Permalink to this definition">¶</a></dt>
 <dd><p>This sets a new page to be recorded</p>
-<ul>
-<li><dl class="first docutils">
-<dt>ref: unicode</dt>
-<dd><p class="first last">A reference for the new page. Defaults to None</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ref</strong> &#8211; A reference for the new page. Defaults to None</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.remap_hosts">
 <tt class="descname">remap_hosts</tt><big>(</big><em>address</em>, <em>ip_address</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.remap_hosts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remap the hosts for a specific URL</p>
-<ul>
-<li><dl class="first docutils">
-<dt>address: unicode</dt>
-<dd><p class="first last">url that you wish to remap</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>ip_address: unicode</dt>
-<dd><p class="first last">IP Address that will handle all traffic for the address passed in</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>address</strong> &#8211; url that you wish to remap</li>
+<li><strong>ip_address</strong> &#8211; IP Address that will handle all traffic for the address passed in</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.request_interceptor">
 <tt class="descname">request_interceptor</tt><big>(</big><em>js</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.request_interceptor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Executes the javascript against each request</p>
-<ul>
-<li><dl class="first docutils">
-<dt>js: unicode</dt>
-<dd><p class="first last">the javascript to execute</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>js</strong> &#8211; the javascript to execute</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.response_interceptor">
 <tt class="descname">response_interceptor</tt><big>(</big><em>js</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.response_interceptor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Executes the javascript against each response</p>
-<ul>
-<li><dl class="first docutils">
-<dt>js: unicode</dt>
-<dd><p class="first last">the javascript to execute</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>js</strong> &#8211; the javascript to execute</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.retry">
 <tt class="descname">retry</tt><big>(</big><em>retry_count</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.retry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retries. No idea what its used for, but its in the API...</p>
-<ul>
-<li><dl class="first docutils">
-<dt>retry_count: int</dt>
-<dd><p class="first last">the number of retries</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>retry_count</strong> &#8211; the number of retries</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.rewrite_url">
 <tt class="descname">rewrite_url</tt><big>(</big><em>match</em>, <em>replace</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.rewrite_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rewrites the requested url.</p>
-<ul>
-<li><dl class="first docutils">
-<dt>match: unicode</dt>
-<dd><p class="first last">a regex to match requests with</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>replace: unicode</dt>
-<dd><p class="first last">a string to replace the matches with</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> &#8211; a regex to match requests with</li>
+<li><strong>replace</strong> &#8211; unicode                    a string to replace the matches with</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -286,34 +314,36 @@ BrowserMob proxy information</p>
 <dt id="browsermobproxy.Client.timeouts">
 <tt class="descname">timeouts</tt><big>(</big><em>options</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.timeouts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Configure various timeouts in the proxy</p>
-<ul>
-<li><dl class="first docutils">
-<dt>options: dict</dt>
-<dd><p class="first last">A dictionary with all the details you want to set.                         request - request timeout (in seconds)                         read - read timeout (in seconds)                         connection - connection timeout (in seconds)                         dns - dns lookup timeout (in seconds)</p>
-</dd>
-</dl>
-</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> &#8211; A dictionary with all the details you want to set.                         request - request timeout (in seconds)                         read - read timeout (in seconds)                         connection - connection timeout (in seconds)                         dns - dns lookup timeout (in seconds)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="browsermobproxy.Client.wait_for_traffic_to_stop">
 <tt class="descname">wait_for_traffic_to_stop</tt><big>(</big><em>quiet_period</em>, <em>timeout</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.wait_for_traffic_to_stop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Waits for the network to be quiet</p>
-<ul>
-<li><dl class="first docutils">
-<dt>quiet_period: int</dt>
-<dd><p class="first last">number of seconds the network needs to be quiet for</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>timeout: int</dt>
-<dd><p class="first last">max number of seconds to wait</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>quiet_period</strong> &#8211; number of seconds the network needs to be quiet for</li>
+<li><strong>timeout</strong> &#8211; max number of seconds to wait</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -326,20 +356,20 @@ BrowserMob proxy information</p>
 <dt id="browsermobproxy.Client.whitelist">
 <tt class="descname">whitelist</tt><big>(</big><em>regexp</em>, <em>status_code</em><big>)</big><a class="headerlink" href="#browsermobproxy.Client.whitelist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets a list of URL patterns to whitelist</p>
-<ul>
-<li><dl class="first docutils">
-<dt>regex: unicode</dt>
-<dd><p class="first last">a comma separated list of regular expressions</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>status_code: unicode</dt>
-<dd><p class="first last">the HTTP status code to return for URLs that do not                        match the whitelist</p>
-</dd>
-</dl>
-</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>regex</strong> &#8211; a comma separated list of regular expressions</li>
+<li><strong>status_code</strong> &#8211; the HTTP status code to return for URLs that do not                        match the whitelist</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
