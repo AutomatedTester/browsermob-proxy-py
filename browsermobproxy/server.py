@@ -13,7 +13,6 @@ class Server(object):
         """
         Initialises a Server object
 
-        :Args:
         :param path: Path to the browsermob proxy batch file
         :param options: Dictionary that can hold the port. \
                      More items will be added in the future. \

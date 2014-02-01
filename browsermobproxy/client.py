@@ -8,7 +8,7 @@ class Client(object):
         """
         Initialises a new Client object
 
-        :Args:
+
         :param url: This is where the BrowserMob Proxy lives
         """
         self.host = "http://" + url
@@ -49,7 +49,7 @@ class Client(object):
         Adds an 'proxy' entry to a desired capabilities dictionary with the
         BrowserMob proxy information
 
-        :Args:
+
         :param capabilities: The Desired capabilities object from Selenium WebDriver
         """
         capabilities['proxy'] = {'proxyType': "MANUAL",
@@ -72,7 +72,7 @@ class Client(object):
         """
         This sets a new HAR to be recorded
 
-        :Args:
+
         :param ref: A reference for the HAR. Defaults to None
         :param options: A dictionary that will be passed to BrowserMob Proxy \
                    with specific keywords. Keywords are: \
@@ -97,7 +97,7 @@ class Client(object):
         """
         This sets a new page to be recorded
 
-        :Args:
+
         :param ref: A reference for the new page. Defaults to None
         """
         if ref:
@@ -112,7 +112,7 @@ class Client(object):
         """
         Sets a list of URL patterns to blacklist
 
-        :Args:
+
         :param regex: a comma separated list of regular expressions
         :param status_code: the HTTP status code to return for URLs that do not \
                        match the blacklist
@@ -126,7 +126,7 @@ class Client(object):
         """
         Sets a list of URL patterns to whitelist
 
-        :Args:
+
         :param regex: a comma separated list of regular expressions
         :param status_code: the HTTP status code to return for URLs that do not \
                        match the whitelist
@@ -139,7 +139,7 @@ class Client(object):
         """
         This add automatic basic authentication
 
-        :Args:
+
         :param domain: domain to set authentication credentials for
         :param username: valid username to use when authenticating
         :param  password: valid password to use when authenticating
@@ -153,7 +153,7 @@ class Client(object):
         """
         This sets the headers that will set by the proxy on all requests
 
-        :Args:
+
         :param headers: this is a dictionary of the headers to be set
         """
         if not isinstance(headers, dict):
@@ -168,7 +168,7 @@ class Client(object):
         """
         Executes the javascript against each response
 
-        :Args:
+
         :param js: the javascript to execute
         """
         r = requests.post(url='%s/proxy/%s/interceptor/response' % (self.host, self.port),
@@ -180,7 +180,7 @@ class Client(object):
         """
         Executes the javascript against each request
 
-        :Args:
+
         :param js: the javascript to execute
         """
         r = requests.post(url='%s/proxy/%s/interceptor/request' % (self.host, self.port),
@@ -198,7 +198,7 @@ class Client(object):
         """
         Limit the bandwidth through the proxy.
 
-        :Args:
+
         :param options: A dictionary with all the details you want to set. \
                         downstreamKbps - Sets the downstream kbps \
                         upstreamKbps - Sets the upstream kbps \
@@ -230,7 +230,7 @@ class Client(object):
         """
         Configure various timeouts in the proxy
 
-        :Args:
+
         :param options: A dictionary with all the details you want to set. \
                         request - request timeout (in seconds) \
                         read - read timeout (in seconds) \
@@ -256,7 +256,7 @@ class Client(object):
         """
         Remap the hosts for a specific URL
 
-        :Args:
+
         :param address: url that you wish to remap
         :param ip_address: IP Address that will handle all traffic for the address passed in
         """
@@ -270,7 +270,7 @@ class Client(object):
         """
         Waits for the network to be quiet
 
-        :Args:
+
         :param quiet_period: number of seconds the network needs to be quiet for
         :param timeout: max number of seconds to wait
         """
@@ -289,7 +289,7 @@ class Client(object):
         """
         Rewrites the requested url.
 
-        :Args:
+
         :param match: a regex to match requests with
         :param replace: unicode \
                    a string to replace the matches with
@@ -306,7 +306,7 @@ class Client(object):
         """
         Retries. No idea what its used for, but its in the API...
 
-        :Args:
+
         :param retry_count: the number of retries
         """
         r = requests.put('%s/proxy/%s/retry' % (self.host, self.port),
