@@ -2,13 +2,14 @@ import requests
 from urllib import urlencode
 import json
 
+
 class Client(object):
     def __init__(self, url):
         """
         Initialises a new Client object
 
-        url: str
-             This is where the BrowserMob Proxy lives
+        :Args:
+        :param url: This is where the BrowserMob Proxy lives
         """
         self.host = "http://" + url
         resp = requests.post('%s/proxy' % self.host, urlencode(''))
@@ -47,6 +48,9 @@ class Client(object):
         """
         Adds an 'proxy' entry to a desired capabilities dictionary with the
         BrowserMob proxy information
+
+        :Args:
+        :param capabilities: The Desired capabilities object from Selenium WebDriver
         """
         capabilities['proxy'] = {'proxyType': "MANUAL",
                                  'httpProxy': self.proxy}
@@ -68,10 +72,9 @@ class Client(object):
         """
         This sets a new HAR to be recorded
 
-        - ref: unicode
-               A reference for the HAR. Defaults to None
-        - options: dict
-                   A dictionary that will be passed to BrowserMob Proxy \
+        :Args:
+        :param ref: A reference for the HAR. Defaults to None
+        :param options: A dictionary that will be passed to BrowserMob Proxy \
                    with specific keywords. Keywords are: \
                    captureHeaders - Boolean, capture headers \
                    captureContent - Boolean, capture content bodies \
@@ -94,8 +97,8 @@ class Client(object):
         """
         This sets a new page to be recorded
 
-        - ref: unicode
-               A reference for the new page. Defaults to None
+        :Args:
+        :param ref: A reference for the new page. Defaults to None
         """
         if ref:
             payload = {"pageRef": ref}
@@ -109,10 +112,9 @@ class Client(object):
         """
         Sets a list of URL patterns to blacklist
 
-        - regex: unicode
-                 a comma separated list of regular expressions
-        - status_code: unicode
-                       the HTTP status code to return for URLs that do not \
+        :Args:
+        :param regex: a comma separated list of regular expressions
+        :param status_code: the HTTP status code to return for URLs that do not \
                        match the blacklist
 
         """
@@ -124,10 +126,9 @@ class Client(object):
         """
         Sets a list of URL patterns to whitelist
 
-        - regex: unicode
-                 a comma separated list of regular expressions
-        - status_code: unicode
-                       the HTTP status code to return for URLs that do not \
+        :Args:
+        :param regex: a comma separated list of regular expressions
+        :param status_code: the HTTP status code to return for URLs that do not \
                        match the whitelist
         """
         r = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port),
@@ -138,12 +139,10 @@ class Client(object):
         """
         This add automatic basic authentication
 
-        - domain: unicode
-                  domain to set authentication credentials for
-        - username: unicode
-                    valid username to use when authenticating
-        - password: unicode
-                    valid password to use when authenticating
+        :Args:
+        :param domain: domain to set authentication credentials for
+        :param username: valid username to use when authenticating
+        :param  password: valid password to use when authenticating
         """
         r = requests.post(url='%s/proxy/%s/auth/basic/%s' % (self.host, self.port, domain),
                           data=json.dumps({'username': username, 'password': password}),
@@ -154,8 +153,8 @@ class Client(object):
         """
         This sets the headers that will set by the proxy on all requests
 
-        - headers: dict
-                   this is a dictionary of the headers to be set
+        :Args:
+        :param headers: this is a dictionary of the headers to be set
         """
         if not isinstance(headers, dict):
             raise TypeError("headers needs to be dictionary")
@@ -169,8 +168,8 @@ class Client(object):
         """
         Executes the javascript against each response
 
-        - js: unicode
-              the javascript to execute
+        :Args:
+        :param js: the javascript to execute
         """
         r = requests.post(url='%s/proxy/%s/interceptor/response' % (self.host, self.port),
                   data=js,
@@ -181,8 +180,8 @@ class Client(object):
         """
         Executes the javascript against each request
 
-        - js: unicode
-              the javascript to execute
+        :Args:
+        :param js: the javascript to execute
         """
         r = requests.post(url='%s/proxy/%s/interceptor/request' % (self.host, self.port),
                   data=js,
@@ -199,8 +198,8 @@ class Client(object):
         """
         Limit the bandwidth through the proxy.
 
-        - options: dict
-                   A dictionary with all the details you want to set. \
+        :Args:
+        :param options: A dictionary with all the details you want to set. \
                         downstreamKbps - Sets the downstream kbps \
                         upstreamKbps - Sets the upstream kbps \
                         latency - Add the given latency to each HTTP request
@@ -231,8 +230,8 @@ class Client(object):
         """
         Configure various timeouts in the proxy
 
-        - options: dict
-                   A dictionary with all the details you want to set. \
+        :Args:
+        :param options: A dictionary with all the details you want to set. \
                         request - request timeout (in seconds) \
                         read - read timeout (in seconds) \
                         connection - connection timeout (in seconds) \
@@ -257,10 +256,9 @@ class Client(object):
         """
         Remap the hosts for a specific URL
 
-        - address: unicode
-                   url that you wish to remap
-        - ip_address: unicode
-                      IP Address that will handle all traffic for the address passed in
+        :Args:
+        :param address: url that you wish to remap
+        :param ip_address: IP Address that will handle all traffic for the address passed in
         """
         assert address is not None and ip_address is not None
         r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
@@ -271,11 +269,10 @@ class Client(object):
     def wait_for_traffic_to_stop(self, quiet_period, timeout):
         """
         Waits for the network to be quiet
-        
-        - quiet_period: int
-                        number of seconds the network needs to be quiet for
-        - timeout: int
-                   max number of seconds to wait
+
+        :Args:
+        :param quiet_period: number of seconds the network needs to be quiet for
+        :param timeout: max number of seconds to wait
         """
         r = requests.put('%s/proxy/%s/wait' % (self.host, self.port),
                  {'quietPeriodInMs': quiet_period, 'timeoutInMs': timeout})
@@ -292,9 +289,9 @@ class Client(object):
         """
         Rewrites the requested url.
 
-        - match: unicode
-                 a regex to match requests with
-        - replace: unicode
+        :Args:
+        :param match: a regex to match requests with
+        :param replace: unicode \
                    a string to replace the matches with
         """
         params = {
@@ -309,8 +306,8 @@ class Client(object):
         """
         Retries. No idea what its used for, but its in the API...
 
-        - retry_count: int
-                       the number of retries
+        :Args:
+        :param retry_count: the number of retries
         """
         r = requests.put('%s/proxy/%s/retry' % (self.host, self.port),
                  {'retrycount': retry_count})

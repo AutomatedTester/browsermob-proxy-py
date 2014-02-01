@@ -9,14 +9,14 @@ from client import Client
 
 class Server(object):
 
-    def __init__(self, path = 'browsermob-proxy', options={}):
+    def __init__(self, path='browsermob-proxy', options={}):
         """
         Initialises a Server object
 
         :Args:
-         - path : Path to the browsermob proxy batch file
-         - options : Dictionary that can hold the port.
-                     More items will be added in the future.
+        :param path: Path to the browsermob proxy batch file
+        :param options: Dictionary that can hold the port. \
+                     More items will be added in the future. \
                      This defaults to an empty dictionary
         """
         path_var_sep = ':'
@@ -66,7 +66,7 @@ class Server(object):
         """
         This will stop the process running the proxy
         """
-        if self.process.poll() != None:
+        if self.process.poll() is not None:
             return
 
         try:
