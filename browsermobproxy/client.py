@@ -271,8 +271,8 @@ class Client(object):
         Waits for the network to be quiet
 
 
-        :param quiet_period: number of seconds the network needs to be quiet for
-        :param timeout: max number of seconds to wait
+        :param quiet_period: number of miliseconds the network needs to be quiet for
+        :param timeout: max number of miliseconds to wait
         """
         r = requests.put('%s/proxy/%s/wait' % (self.host, self.port),
                  {'quietPeriodInMs': quiet_period, 'timeoutInMs': timeout})
