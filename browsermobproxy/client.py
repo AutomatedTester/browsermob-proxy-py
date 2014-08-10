@@ -52,8 +52,11 @@ class Client(object):
 
         :param capabilities: The Desired capabilities object from Selenium WebDriver
         """
-        capabilities['proxy'] = {'proxyType': "MANUAL",
-                                 'httpProxy': self.proxy}
+        capabilities['proxy'] = {
+            'proxyType': "MANUAL",
+            'httpProxy': self.proxy,
+            'sslProxy': self.proxy
+        }
 
     def add_to_webdriver_capabilities(self, capabilities):
         self.add_to_capabilities(capabilities)

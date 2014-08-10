@@ -53,7 +53,8 @@ class TestWebDriver(object):
         self.client.add_to_capabilities(bmp_capabilities)
 
         proxy_capabilities = copy.deepcopy(selenium.webdriver.common.desired_capabilities.DesiredCapabilities.FIREFOX)
-        proxy = Proxy({'httpProxy': 'localhost:%d' % self.client.port})
+        proxy_addr = 'localhost:%d' % self.client.port
+        proxy = Proxy({'httpProxy': proxy_addr,'sslProxy': proxy_addr})
         proxy.add_to_capabilities(proxy_capabilities)
 
         assert bmp_capabilities == proxy_capabilities
