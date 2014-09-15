@@ -1,5 +1,8 @@
 import requests
-from urllib import urlencode
+try:
+  from urllib.parse import urlencode
+except ImportError:
+  from urllib import urlencode
 import json
 
 
@@ -13,7 +16,7 @@ class Client(object):
         """
         self.host = "http://" + url
         resp = requests.post('%s/proxy' % self.host, urlencode(''))
-        jcontent = json.loads(resp.content)
+        jcontent = json.loads(resp.content.decode('utf-8'))
         self.port = jcontent['port']
         url_parts = self.host.split(":")
         self.proxy = url_parts[1][2:] + ":" + str(self.port)
@@ -209,13 +212,13 @@ class Client(object):
         """
         params = {}
 
-        for (k, v) in options.items():
+        for (k, v) in list(options.items()):
             if k not in self.LIMITS:
                 raise KeyError('invalid key: %s' % k)
 
             params[self.LIMITS[k]] = int(v)
 
-        if len(params.items()) == 0:
+        if len(list(params.items())) == 0:
             raise KeyError("You need to specify one of the valid Keys")
 
         r = requests.put('%s/proxy/%s/limit' % (self.host, self.port),
@@ -242,13 +245,13 @@ class Client(object):
         """
         params = {}
 
-        for (k, v) in options.items():
+        for (k, v) in list(options.items()):
             if k not in self.TIMEOUTS:
                 raise KeyError('invalid key: %s' % k)
 
             params[self.TIMEOUTS[k]] = int(v)
 
-        if len(params.items()) == 0:
+        if len(list(params.items())) == 0:
             raise KeyError("You need to specify one of the valid Keys")
 
         r = requests.put('%s/proxy/%s/timeout' % (self.host, self.port),
