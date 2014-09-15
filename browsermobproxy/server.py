@@ -4,7 +4,7 @@ import socket
 import subprocess
 import time
 
-from client import Client
+from .client import Client
 
 
 class Server(object):
