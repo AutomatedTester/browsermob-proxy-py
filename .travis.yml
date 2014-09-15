@@ -2,6 +2,9 @@ language: python
 python:
   - 2.6
   - 2.7
+  - 3.2
+  - 3.3
+  - 3.4
 before_script:
   - sudo apt-get install -y unzip
   - curl -k -L -O https://s3-us-west-1.amazonaws.com/lightbody-bmp/browsermob-proxy-2.0-beta-9-bin.zip
