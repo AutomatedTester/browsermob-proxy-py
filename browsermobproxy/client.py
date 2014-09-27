@@ -1,18 +1,23 @@
 import requests
-from urllib import urlencode
+from urllib import urlencode,unquote
 import json
 
 
 class Client(object):
-    def __init__(self, url):
+    def __init__(self, url, params={}):
         """
         Initialises a new Client object
 
 
         :param url: This is where the BrowserMob Proxy lives
+        :param params: URL query (for example httpProxy and httpsProxy vars)
         """
         self.host = "http://" + url
-        resp = requests.post('%s/proxy' % self.host, urlencode(''))
+        if params:
+            urlparams = "?" + unquote(urlencode(params))
+        else:
+            urlparams = ""
+        resp = requests.post('%s/proxy' % self.host + urlparams)
         jcontent = json.loads(resp.content)
         self.port = jcontent['port']
         url_parts = self.host.split(":")
