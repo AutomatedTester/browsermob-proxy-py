@@ -85,12 +85,14 @@ class Server(object):
         """
         return "http://localhost:%d" % self.port
 
-    def create_proxy(self):
+    def create_proxy(self, params={}):
         """
         Gets a client class that allow to set all the proxy details that you
         may need to.
+        :param params: Dictionary where you can specify params \
+                    like httpProxy and httpsProxy
         """
-        client = Client(self.url[7:])
+        client = Client(self.url[7:], params)
         return client
 
     def _is_listening(self):
