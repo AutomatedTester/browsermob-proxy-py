@@ -39,6 +39,13 @@ chrome_options.add_argument("--proxy-server={0}".format(proxy.proxy))
 browser = webdriver.Chrome(chrome_options = chrome_options)
 ```
 
+Before Running Tests
+-------------
+Start the browsermob-proxy with the following in your terminal and wait for the proxy to start:
+```
+path/to/browsermob-proxy
+```
+
 Running Tests
 -------------
 To run the tests in a CI environment, disable the ones that require human
@@ -84,5 +91,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
 
 
