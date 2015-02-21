@@ -59,6 +59,13 @@ If you are going to watch the test, the 'human' ones should display an english
 muffin instead of the american flag on the 'pick your version' page. Or at
 least it does from Canada.
 
+Options
+--------
+The following options can be passed in an options dictionary. Example below.
+``` python
+server = Server("path/to/browsermob-proxy", { "port": 9999 })
+```
+Currently, port is the option available.
 
 See also
 --------
