@@ -65,7 +65,7 @@ The following options can be passed in an options dictionary. Example below.
 ``` python
 server = Server("path/to/browsermob-proxy", { "port": 9999 })
 ```
-Currently, port is the option available.
+Currently, port is the only option available.
 
 See also
 --------
