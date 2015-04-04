@@ -7,7 +7,48 @@ import time
 from .client import Client
 
 
-class Server(object):
+class RemoteServer(object):
+
+    def __init__(self, host, port):
+        """
+        Initialises a RemoteServer object
+
+        :param host: The host of the proxy server.
+        :param port: The port of the proxy server.
+        """
+        self.host = host
+        self.port = port
+
+    @property
+    def url(self):
+        """
+        Gets the url that the proxy is running on. This is not the URL clients
+        should connect to.
+        """
+        return "http://%s:%d" % (self.host, self.port)
+
+    def create_proxy(self, params={}):
+        """
+        Gets a client class that allow to set all the proxy details that you
+        may need to.
+        :param params: Dictionary where you can specify params \
+                    like httpProxy and httpsProxy
+        """
+        client = Client(self.url[7:], params)
+        return client
+
+    def _is_listening(self):
+        try:
+            socket_ = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            socket_.settimeout(1)
+            socket_.connect((self.host, self.port))
+            socket_.close()
+            return True
+        except socket.error:
+            return False
+
+
+class Server(RemoteServer):
 
     def __init__(self, path='browsermob-proxy', options={}):
         """
@@ -35,6 +76,7 @@ class Server(object):
                             " provided: %s" % path)
 
         self.path = path
+        self.host = 'localhost'
         self.port = options.get('port', 8080)
         self.process = None
 
@@ -76,31 +118,3 @@ class Server(object):
             pass
 
         self.log_file.close()
-
-    @property
-    def url(self):
-        """
-        Gets the url that the proxy is running on. This is not the URL clients
-        should connect to.
-        """
-        return "http://localhost:%d" % self.port
-
-    def create_proxy(self, params={}):
-        """
-        Gets a client class that allow to set all the proxy details that you
-        may need to.
-        :param params: Dictionary where you can specify params \
-                    like httpProxy and httpsProxy
-        """
-        client = Client(self.url[7:], params)
-        return client
-
-    def _is_listening(self):
-        try:
-            socket_ = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            socket_.settimeout(1)
-            socket_.connect(("localhost", self.port))
-            socket_.close()
-            return True
-        except socket.error:
-            return False
