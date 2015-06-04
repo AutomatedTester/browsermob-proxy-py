@@ -1,4 +1,21 @@
 
+0.7.0 / 2015-06-05 
+==================
+
+ * Updating travis ci to use browsermob proxy 2.0
+ * Support to use httpsProxy and httpProxy at proxy creation time
+ * Adding Python 3 support
+ * add sslProxy to Client.add_to_capabilities with tests
+ * Correct docstring for `wait_for_traffic_to_stop`
+ * Removing unused :Args: items
+ * Updating docstrings
+ * Correcting args and params for documentation
+ * updated docstrings for easier formatting on things like RTDs
+ * updated new_har() docstrings
+ * updated client documentation
+ * Added client and server docs
+ * updating version in docs
+
 0.6.0 / 2014-01-21 
 ==================
 
