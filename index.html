@@ -6,7 +6,7 @@
   </head>
   <body>
     <div class='background'>&nbsp;</div>
-    <div class='container'> 
+    <div class='container'>
     <h1>Python Browsermob Proxy Library</h1>
     <p>
       This is the Python Library for interaction with the Browsermob Proxy. It allows us to create a proxy, set references and generate HAR representations. For more details read the <a href="http://browsermob-proxy-py.readthedocs.org/en/latest/">docs</a>. Note that this will only work with Selenium 2.17 onwards.
@@ -36,7 +36,26 @@
     </p>
     <p>
       <h2>Releases</h2>
-      <a href="http://pypi.python.org/pypi/browsermob-proxy"><h3>0.6.0</h3></a>
+
+      <a href="http://pypi.python.org/pypi/browsermob-proxy"><h3>0.7.0</h3></a>
+      <ul>
+        <li>Updating travis ci to use browsermob proxy 2.0
+        <li>Support to use httpsProxy and httpProxy at proxy creation time
+        <li>Adding Python 3 support
+        <li>add sslProxy to Client.add_to_capabilities with tests
+        <li>Correct docstring for `wait_for_traffic_to_stop`
+        <li>Removing unused :Args: items
+        <li>Updating docstrings
+        <li>Correcting args and params for documentation
+        <li>updated docstrings for easier formatting on things like RTDs
+        <li>updated new_har() docstrings
+        <li>updated client documentation
+        <li>Added client and server docs
+        <li>updating version in docs
+      </ul>
+
+
+      <h3>0.6.0</h3>
       <ul>
         <li>Added support for parameters in har creation
         <li>Bug fixes for tests that are out of date
