@@ -41,17 +41,35 @@ browser = webdriver.Chrome(chrome_options = chrome_options)
 
 Running Tests
 -------------
-To run the tests in a CI environment, disable the ones that require human
-judgement by using
+
+Install pytest if you don't have it already.
 
 ```bash
-$ py.test -m "not human" test
+$ pip install pytest
+```
+
+Start a browsermob instance.
+
+```bash
+$ java -jar browsermob.jar --port 9090
+```
+
+In a separate window:
+
+```bash
+$ py.test
 ```
 
 If you are going to watch the test, the 'human' ones should display an english
 muffin instead of the american flag on the 'pick your version' page. Or at
 least it does from Canada.
 
+To run the tests in a CI environment, disable the ones that require human
+judgement by adding "-m "not human" test" to the py.test command.
+
+```bash
+$ py.test -m "not human" test
+```
 
 See also
 --------
