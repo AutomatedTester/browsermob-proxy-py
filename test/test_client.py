@@ -64,7 +64,7 @@ class TestClient(object):
         self.client.new_page()
         har = self.client.har
         assert(len(har["log"]["pages"]) == 2)
-        assert(har["log"]["pages"][1]["id"] == "Page 2")
+        assert(har["log"]["pages"][1]["id"] == "Page 1")
 
     def test_new_named_page(self):
         """
