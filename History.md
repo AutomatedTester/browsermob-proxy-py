@@ -1,4 +1,12 @@
 
+0.7.1 / 2015-07-09
+==================
+
+  * Adding option of using existing proxy port.
+  * Allow use of a remote proxy server.
+  * improved directions on running tests
+  * fix broken test (test_new_page_defaults)
+
 0.7.0 / 2015-06-05 
 ==================
 
