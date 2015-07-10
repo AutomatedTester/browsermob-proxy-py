@@ -269,17 +269,19 @@ class Client(object):
                          params)
         return r.status_code
 
-    def remap_hosts(self, address, ip_address):
+    def remap_hosts(self, hostmap):
         """
         Remap the hosts for a specific URL
 
-
-        :param address: url that you wish to remap
-        :param ip_address: IP Address that will handle all traffic for the address passed in
+        :param hostmap: A dictionary of url/ip_address pairs to remap
         """
-        assert address is not None and ip_address is not None
+        if not isinstance(hostmap, dict):
+            raise TypeError("hostmap needs to be a dictionary")
+        
+        if not hostmap:
+            raise Error("hostmap should have at least one entry")
         r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
-                         json.dumps({address: ip_address}),
+                         json.dumps(hostmap),
                           headers={'content-type': 'application/json'})
         return r.status_code
 
