@@ -279,7 +279,7 @@ class Client(object):
             raise TypeError("hostmap needs to be a dictionary")
   
         if not hostmap:
-            raise Error("hostmap should have at least one entry")
+            raise Exception("hostmap should have at least one entry")
   
         r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
                          json.dumps(hostmap),
