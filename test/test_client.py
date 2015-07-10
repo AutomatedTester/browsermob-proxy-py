@@ -215,7 +215,7 @@ class TestClient(object):
         """
         /proxy/:port/hosts
         """
-        status_code = self.client.remap_hosts("example.com", "1.2.3.4")
+        status_code = self.client.remap_hosts({"example.com": "1.2.3.4"})
         assert(status_code == 200)
 
     def test_wait_for_traffic_to_stop(self):
