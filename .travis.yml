@@ -13,3 +13,4 @@ before_script:
   - sleep 5
 install: pip install pytest selenium
 script: python setup.py develop && py.test -m "not human" test
+sudo: false
