@@ -77,6 +77,17 @@ class Client(object):
 
     # browsermob proxy api
     @property
+    def proxy_ports(self):
+        """
+            Return a list of proxy ports available
+        """
+        # r should look like {u'proxyList': [{u'port': 8081}]}
+        r = requests.get('%s/proxy' % self.host).json()
+        ports = [port['port'] for port in r['proxyList']]
+
+        return ports
+
+    @property
     def har(self):
         """
         Gets the HAR that has been recorded
@@ -84,6 +95,7 @@ class Client(object):
         r = requests.get('%s/proxy/%s/har' % (self.host, self.port))
 
         return r.json()
+
 
     def new_har(self, ref=None, options={}):
         """
