@@ -19,7 +19,7 @@ class TestClient(object):
             GET /proxy - get a list of ports attached to ProxyServer instances
                          managed by ProxyManager
         """
-        ports = self.client.proxy_details
+        ports = self.client.proxy_ports
 
         assert(len(ports) == 1)
         assert(9090 not in ports)
