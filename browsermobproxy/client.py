@@ -341,3 +341,10 @@ class Client(object):
         r = requests.put('%s/proxy/%s/retry' % (self.host, self.port),
                  {'retrycount': retry_count})
         return r.status_code
+
+    def empty_dns_cache(self):
+        """
+        Empties the DNS Cache in BrowserMob Proxy.
+        """
+        return requests.delete('%s/proxy/%s/dns/cache' % (self.host, self.port))\
+                       .status_code
