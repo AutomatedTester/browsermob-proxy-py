@@ -7,9 +7,10 @@ python:
   - 3.3
   - 3.4
 before_script:
-  - curl -k -L -O https://github.com/lightbody/browsermob-proxy/releases/download/browsermob-proxy-2.0.0/browsermob-proxy-2.0.0-bin.zip
-  - unzip browsermob-proxy-2.0.0-bin.zip
-  - sh browsermob-proxy-2.0.0/bin/browsermob-proxy --port=9090 &
+  - curl -l -L -O https://github.com/lightbody/browsermob-proxy/releases/download/browsermob-proxy-2.1.0-beta-2/browsermob-proxy-2.1.0-beta-2-bin.zip
+  - unzip browsermob-proxy-2.1.0-beta-2-bin.zip
+  - sh browsermob-proxy-2.1.0-beta-2/bin/browsermob-proxy --port=9090 &
   - sleep 5
 install: pip install pytest selenium
 script: python setup.py develop && py.test -m "not human" test
+sudo: false

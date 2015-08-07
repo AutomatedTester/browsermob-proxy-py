@@ -14,6 +14,16 @@ class TestClient(object):
     def teardown_method(self, method):
         self.client.close()
 
+    def test_we_can_get_list_of_ports(self):
+        """
+            GET /proxy - get a list of ports attached to ProxyServer instances
+                         managed by ProxyManager
+        """
+        ports = self.client.proxy_ports
+
+        assert(len(ports) == 1)
+        assert(9090 not in ports)
+
     def test_headers_type(self):
         """
         /proxy/:port/headers needs to take a dictionary
@@ -42,7 +52,7 @@ class TestClient(object):
         assert(status_code == 200)
         assert('log' in har)
 
-    def test_new_har(self):
+    def _test_new_har(self):
         """
         /proxy/:port/har
         and returns 204 when creating a har with a particular name the first time
@@ -244,4 +254,11 @@ class TestClient(object):
         /proxy/:port/retry
         """
         status_code = self.client.retry(4)
+        assert(status_code == 200)
+
+    def test_we_can_delete_dns_cache(self):
+        """
+        /proxy/:port/dns/cache
+        """
+        status_code = self.client.empty_dns_cache()
         assert(status_code == 200)
