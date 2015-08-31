@@ -97,6 +97,10 @@ class Server(RemoteServer):
                                         stderr=subprocess.STDOUT)
         count = 0
         while not self._is_listening():
+            if self.process.poll():
+                message = ("The Browsermob-Proxy server process failed to start. Check server.log "
+                           "for a helpful error message.")
+                raise Exception(message)
             time.sleep(0.5)
             count += 1
             if count == 60:
