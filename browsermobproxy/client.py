@@ -281,17 +281,20 @@ class Client(object):
                          params)
         return r.status_code
 
-    def remap_hosts(self, address, ip_address):
+    def remap_hosts(self, address=None, ip_address=None, hostmap={}):
         """
         Remap the hosts for a specific URL
 
-
         :param address: url that you wish to remap
         :param ip_address: IP Address that will handle all traffic for the address passed in
+        :param **hostmap: Other hosts to be added as keyword arguments
         """
-        assert address is not None and ip_address is not None
+
+        if (address is not None and ip_address is not None):
+            hostmap[address] = ip_address
+
         r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
-                         json.dumps({address: ip_address}),
+                         json.dumps(hostmap),
                           headers={'content-type': 'application/json'})
         return r.status_code
 
