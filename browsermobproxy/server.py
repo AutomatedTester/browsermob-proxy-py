@@ -86,12 +86,19 @@ class Server(RemoteServer):
             self.command = []
         self.command += [path, '--port=%s' % self.port]
 
-    def start(self):
+    def start(self, options={}):
         """
         This will start the browsermob proxy and then wait until it can
         interact with it
         """
-        self.log_file = open(os.path.abspath('server.log'), 'w')
+        if (not bool(options)):
+            log_path_name = os.path.abspath('server.log')
+        else:
+            log_path = options.get('path', os.getcwd())
+            log_file = options.get('file', 'server.log')
+            log_path_name = log_path + os.path.sep + log_file
+
+        self.log_file = open(log_path_name, 'w')
         self.process = subprocess.Popen(self.command,
                                         stdout=self.log_file,
                                         stderr=subprocess.STDOUT)
