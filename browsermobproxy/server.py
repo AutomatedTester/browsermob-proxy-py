@@ -59,6 +59,7 @@ class Server(RemoteServer):
                      More items will be added in the future. \
                      This defaults to an empty dictionary
         """
+        # import pdb; pdb.set_trace()
         path_var_sep = ':'
         if platform.system() == 'Windows':
             path_var_sep = ';'
