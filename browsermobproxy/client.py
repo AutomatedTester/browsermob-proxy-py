@@ -122,20 +122,20 @@ class Client(object):
         else:
             return (r.status_code, None)
 
-    def new_page(self, ref=None):
+    def new_page(self, ref=None, title=None):
         """
         This sets a new page to be recorded
 
 
         :param ref: A reference for the new page. Defaults to None
         """
-        if ref:
-            payload = {"pageRef": ref}
-        else:
-            payload = {}
+        payload = {"pageRef": ref} if ref is not None else {}
+        if title is not None:
+            payload.update({'pageTitle': title})
         r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port),
                          payload)
         return r.status_code
+
 
     def blacklist(self, regexp, status_code):
         """
