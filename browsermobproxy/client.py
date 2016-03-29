@@ -1,14 +1,14 @@
 import requests
 
 try:
-  from urllib.parse import urlencode, unquote
+    from urllib.parse import urlencode, unquote
 except ImportError:
-  from urllib import urlencode, unquote
+    from urllib import urlencode, unquote
 import json
 
 
 class Client(object):
-    def __init__(self, url, params={}, options={}):
+    def __init__(self, url, params=None, options=None):
         """
         Initialises a new Client object
 
@@ -18,6 +18,10 @@ class Client(object):
         :param options: Dictionary that can contain the port of an existing
                         proxy to use (for example 'existing_proxy_port_to_use')
         """
+        if params is None:
+            params = {}
+        if options is None:
+            options = {}
         self.host = "http://" + url
         if params:
             urlparams = "?" + unquote(urlencode(params))
@@ -96,19 +100,22 @@ class Client(object):
 
         return r.json()
 
-
-    def new_har(self, ref=None, options={}):
+    def new_har(self, ref=None, options=None):
         """
         This sets a new HAR to be recorded
 
 
         :param ref: A reference for the HAR. Defaults to None
-        :param options: A dictionary that will be passed to BrowserMob Proxy \
-                   with specific keywords. Keywords are: \
-                   captureHeaders - Boolean, capture headers \
-                   captureContent - Boolean, capture content bodies \
+        :param options: A dictionary that will be passed to BrowserMob Proxy
+                   with specific keywords. Keywords are:
+                   initialPageTitle - the title of first HAR page.
+                                      Defaults to initialPageRef.
+                   captureHeaders - Boolean, capture headers
+                   captureContent - Boolean, capture content bodies
                    captureBinaryContent - Boolean, capture binary content
         """
+        if options is None:
+            options = {}
         if ref:
             payload = {"initialPageRef": ref}
         else:
@@ -118,21 +125,20 @@ class Client(object):
 
         r = requests.put('%s/proxy/%s/har' % (self.host, self.port), payload)
         if r.status_code == 200:
-            return (r.status_code, r.json())
+            return r.status_code, r.json()
         else:
-            return (r.status_code, None)
+            return r.status_code, None
 
-    def new_page(self, ref=None):
+    def new_page(self, ref=None, title=None):
         """
         This sets a new page to be recorded
 
-
         :param ref: A reference for the new page. Defaults to None
+        :param title: A title for the new page. Defaults to ref
         """
-        if ref:
-            payload = {"pageRef": ref}
-        else:
-            payload = {}
+        payload = {"pageRef": ref} if ref is not None else {}
+        if title is not None:
+            payload.update({'pageTitle': title})
         r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port),
                          payload)
         return r.status_code
@@ -173,9 +179,10 @@ class Client(object):
         :param username: valid username to use when authenticating
         :param  password: valid password to use when authenticating
         """
-        r = requests.post(url='%s/proxy/%s/auth/basic/%s' % (self.host, self.port, domain),
-                          data=json.dumps({'username': username, 'password': password}),
-                          headers={'content-type': 'application/json'})
+        r = requests.post(
+            url='%s/proxy/%s/auth/basic/%s' % (self.host, self.port, domain),
+            data=json.dumps({'username': username, 'password': password}),
+            headers={'content-type': 'application/json'})
         return r.status_code
 
     def headers(self, headers):
@@ -200,9 +207,10 @@ class Client(object):
 
         :param js: the javascript to execute
         """
-        r = requests.post(url='%s/proxy/%s/interceptor/response' % (self.host, self.port),
-                  data=js,
-                  headers={'content-type': 'x-www-form-urlencoded'})
+        r = requests.post(
+            url='%s/proxy/%s/interceptor/response' % (self.host, self.port),
+            data=js,
+            headers={'content-type': 'x-www-form-urlencoded'})
         return r.status_code
 
     def request_interceptor(self, js):
@@ -212,9 +220,10 @@ class Client(object):
 
         :param js: the javascript to execute
         """
-        r = requests.post(url='%s/proxy/%s/interceptor/request' % (self.host, self.port),
-                  data=js,
-                  headers={'content-type': 'x-www-form-urlencoded'})
+        r = requests.post(
+            url='%s/proxy/%s/interceptor/request' % (self.host, self.port),
+            data=js,
+            headers={'content-type': 'x-www-form-urlencoded'})
         return r.status_code
 
     LIMITS = {
@@ -294,7 +303,7 @@ class Client(object):
             hostmap[address] = ip_address
 
         r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
-                         json.dumps(hostmap),
+                          json.dumps(hostmap),
                           headers={'content-type': 'application/json'})
         return r.status_code
 
@@ -307,7 +316,8 @@ class Client(object):
         :param timeout: max number of miliseconds to wait
         """
         r = requests.put('%s/proxy/%s/wait' % (self.host, self.port),
-                 {'quietPeriodInMs': quiet_period, 'timeoutInMs': timeout})
+                         {'quietPeriodInMs': quiet_period,
+                          'timeoutInMs': timeout})
         return r.status_code
 
     def clear_dns_cache(self):
@@ -342,12 +352,13 @@ class Client(object):
         :param retry_count: the number of retries
         """
         r = requests.put('%s/proxy/%s/retry' % (self.host, self.port),
-                 {'retrycount': retry_count})
+                         {'retrycount': retry_count})
         return r.status_code
 
     def empty_dns_cache(self):
         """
         Empties the DNS Cache in BrowserMob Proxy.
         """
-        return requests.delete('%s/proxy/%s/dns/cache' % (self.host, self.port))\
-                       .status_code
+        return requests.delete(
+            '%s/proxy/%s/dns/cache' % (self.host, self.port)) \
+            .status_code
