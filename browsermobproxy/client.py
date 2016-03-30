@@ -99,10 +99,9 @@ class Client(object):
         return r.json()
 
 
-    def new_har(self, ref=None, options=None):
+    def new_har(self, ref=None, options=None, title=None):
         """
         This sets a new HAR to be recorded
-
 
         :param ref: A reference for the HAR. Defaults to None
         :param options: A dictionary that will be passed to BrowserMob Proxy \
@@ -110,13 +109,13 @@ class Client(object):
                    captureHeaders - Boolean, capture headers \
                    captureContent - Boolean, capture content bodies \
                    captureBinaryContent - Boolean, capture binary content
+        :param title: the title of first har page. Defaults to ref.
         """
         options = options if options is not None else {}
+        payload = {"initialPageRef": ref} if ref is not None else {}
+        if title is not None:
+            payload.update({'initialPageTitle': title})
 
-        if ref:
-            payload = {"initialPageRef": ref}
-        else:
-            payload = {}
         if options:
             payload.update(options)
 
@@ -126,17 +125,16 @@ class Client(object):
         else:
             return (r.status_code, None)
 
-    def new_page(self, ref=None):
+    def new_page(self, ref=None, title=None):
         """
         This sets a new page to be recorded
 
-
         :param ref: A reference for the new page. Defaults to None
+        :param title: the title of new har page. Defaults to ref.
         """
-        if ref:
-            payload = {"pageRef": ref}
-        else:
-            payload = {}
+        payload = {"pageRef": ref} if ref is not None else {}
+        if title is not None:
+            payload.update({'pageTitle': title})
         r = requests.put('%s/proxy/%s/har/pageRef' % (self.host, self.port),
                          payload)
         return r.status_code
