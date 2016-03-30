@@ -6,3 +6,4 @@ build/
 *.egg-info/
 .cache/
 bmp.log
+.idea/

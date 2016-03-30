@@ -27,13 +27,14 @@ class RemoteServer(object):
         """
         return "http://%s:%d" % (self.host, self.port)
 
-    def create_proxy(self, params={}):
+    def create_proxy(self, params=None):
         """
         Gets a client class that allow to set all the proxy details that you
         may need to.
         :param params: Dictionary where you can specify params \
                     like httpProxy and httpsProxy
         """
+        params = params if params is not None else {}
         client = Client(self.url[7:], params)
         return client
 
@@ -50,7 +51,7 @@ class RemoteServer(object):
 
 class Server(RemoteServer):
 
-    def __init__(self, path='browsermob-proxy', options={}):
+    def __init__(self, path='browsermob-proxy', options=None):
         """
         Initialises a Server object
 
@@ -59,6 +60,8 @@ class Server(RemoteServer):
                      More items will be added in the future. \
                      This defaults to an empty dictionary
         """
+        options = options if options is not None else {}
+
         path_var_sep = ':'
         if platform.system() == 'Windows':
             path_var_sep = ';'

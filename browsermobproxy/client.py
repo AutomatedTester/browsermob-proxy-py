@@ -1,14 +1,14 @@
 import requests
 
 try:
-  from urllib.parse import urlencode, unquote
+    from urllib.parse import urlencode, unquote
 except ImportError:
-  from urllib import urlencode, unquote
+    from urllib import urlencode, unquote
 import json
 
 
 class Client(object):
-    def __init__(self, url, params={}, options={}):
+    def __init__(self, url, params=None, options=None):
         """
         Initialises a new Client object
 
@@ -18,6 +18,8 @@ class Client(object):
         :param options: Dictionary that can contain the port of an existing
                         proxy to use (for example 'existing_proxy_port_to_use')
         """
+        params = params if params is not None else {}
+        options = options if options is not None else {}
         self.host = "http://" + url
         if params:
             urlparams = "?" + unquote(urlencode(params))
@@ -97,7 +99,7 @@ class Client(object):
         return r.json()
 
 
-    def new_har(self, ref=None, options={}):
+    def new_har(self, ref=None, options=None):
         """
         This sets a new HAR to be recorded
 
@@ -109,6 +111,8 @@ class Client(object):
                    captureContent - Boolean, capture content bodies \
                    captureBinaryContent - Boolean, capture binary content
         """
+        options = options if options is not None else {}
+
         if ref:
             payload = {"initialPageRef": ref}
         else:
@@ -281,7 +285,7 @@ class Client(object):
                          params)
         return r.status_code
 
-    def remap_hosts(self, address=None, ip_address=None, hostmap={}):
+    def remap_hosts(self, address=None, ip_address=None, hostmap=None):
         """
         Remap the hosts for a specific URL
 
@@ -289,7 +293,7 @@ class Client(object):
         :param ip_address: IP Address that will handle all traffic for the address passed in
         :param **hostmap: Other hosts to be added as keyword arguments
         """
-
+        hostmap = hostmap if hostmap is not None else {}
         if (address is not None and ip_address is not None):
             hostmap[address] = ip_address
 

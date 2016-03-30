@@ -2,7 +2,8 @@ from selenium.webdriver.support.abstract_event_listener import AbstractEventList
 
 class WebDriverEventListener(AbstractEventListener):
     
-    def __init__(self, client, refs={}):
+    def __init__(self, client, refs=None):
+        refs = refs if refs is not None else {}
         self.client = client
         self.hars = []
         self.refs = refs
