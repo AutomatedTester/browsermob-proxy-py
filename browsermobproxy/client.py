@@ -8,7 +8,7 @@ import json
 
 
 class Client(object):
-    def __init__(self, url, params={}, options={}):
+    def __init__(self, url, params=None, options=None):
         """
         Initialises a new Client object
 
@@ -18,6 +18,11 @@ class Client(object):
         :param options: Dictionary that can contain the port of an existing
                         proxy to use (for example 'existing_proxy_port_to_use')
         """
+        if not params:
+            params = {}
+        if not options:
+            options = {}
+
         self.host = "http://" + url
         if params:
             urlparams = "?" + unquote(urlencode(params))
