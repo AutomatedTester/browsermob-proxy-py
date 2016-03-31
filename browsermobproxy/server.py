@@ -89,20 +89,34 @@ class Server(RemoteServer):
             self.command = []
         self.command += [path, '--port=%s' % self.port]
 
-    def start(self):
+    def start(self, options=None):
         """
         This will start the browsermob proxy and then wait until it can
         interact with it
+        :param options: Dictionary that can hold the path and filename
+            of the log file with resp. keys of `log_path` and `log_file`
         """
-        self.log_file = open(os.path.abspath('server.log'), 'w')
+        if options is None:
+            options = {
+                'log_path': os.getcwd(),
+                'log_file': 'server.log',
+                }
+        log_path = options.get('log_path')
+        log_file = options.get('log_file')
+        log_path_name = os.path.join(log_path, os.path.sep, log_file)
+        self.log_file = open(log_path_name, 'w')
+
         self.process = subprocess.Popen(self.command,
                                         stdout=self.log_file,
                                         stderr=subprocess.STDOUT)
         count = 0
         while not self._is_listening():
             if self.process.poll():
-                message = ("The Browsermob-Proxy server process failed to start. Check server.log "
-                           "for a helpful error message.")
+                message = (
+                    "The Browsermob-Proxy server process failed to start. "
+                    "Check {0}"
+                    "for a helpful error message.".format(self.log_file))
+
                 raise Exception(message)
             time.sleep(0.5)
             count += 1
