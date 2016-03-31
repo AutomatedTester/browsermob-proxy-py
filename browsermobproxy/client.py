@@ -99,18 +99,17 @@ class Client(object):
         return r.json()
 
 
-    def new_har(self, ref=None, title=None, options=None):
+    def new_har(self, ref=None, options=None, title=None):
         """
         This sets a new HAR to be recorded
 
-
         :param ref: A reference for the HAR. Defaults to None
-        :param title: the title of first har page. Defaults to ref.
         :param options: A dictionary that will be passed to BrowserMob Proxy \
                    with specific keywords. Keywords are: \
                    captureHeaders - Boolean, capture headers \
                    captureContent - Boolean, capture content bodies \
                    captureBinaryContent - Boolean, capture binary content
+        :param title: the title of first har page. Defaults to ref.
         """
         options = options if options is not None else {}
         payload = {"initialPageRef": ref} if ref is not None else {}
