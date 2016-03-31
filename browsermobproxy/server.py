@@ -31,8 +31,9 @@ class RemoteServer(object):
         """
         Gets a client class that allow to set all the proxy details that you
         may need to.
-        :param params: Dictionary where you can specify params \
-                    like httpProxy and httpsProxy
+
+        :param dict params: Dictionary where you can specify params
+            like httpProxy and httpsProxy
         """
         params = params if params is not None else {}
         client = Client(self.url[7:], params)
@@ -55,10 +56,10 @@ class Server(RemoteServer):
         """
         Initialises a Server object
 
-        :param path: Path to the browsermob proxy batch file
-        :param options: Dictionary that can hold the port. \
-                     More items will be added in the future. \
-                     This defaults to an empty dictionary
+        :param str path: Path to the browsermob proxy batch file
+        :param dict options: Dictionary that can hold the port.
+            More items will be added in the future.
+            This defaults to an empty dictionary
         """
         options = options if options is not None else {}
 
@@ -93,7 +94,8 @@ class Server(RemoteServer):
         """
         This will start the browsermob proxy and then wait until it can
         interact with it
-        :param options: Dictionary that can hold the path and filename
+
+        :param dict options: Dictionary that can hold the path and filename
             of the log file with resp. keys of `log_path` and `log_file`
         """
         if options is None:

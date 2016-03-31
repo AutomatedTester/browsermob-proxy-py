@@ -81,7 +81,7 @@ class Client(object):
     @property
     def proxy_ports(self):
         """
-            Return a list of proxy ports available
+        Return a list of proxy ports available
         """
         # r should look like {u'proxyList': [{u'port': 8081}]}
         r = requests.get('%s/proxy' % self.host).json()
@@ -103,13 +103,15 @@ class Client(object):
         """
         This sets a new HAR to be recorded
 
-        :param ref: A reference for the HAR. Defaults to None
-        :param options: A dictionary that will be passed to BrowserMob Proxy \
-                   with specific keywords. Keywords are: \
-                   captureHeaders - Boolean, capture headers \
-                   captureContent - Boolean, capture content bodies \
-                   captureBinaryContent - Boolean, capture binary content
-        :param title: the title of first har page. Defaults to ref.
+        :param str ref: A reference for the HAR. Defaults to None
+        :param dict options: A dictionary that will be passed to BrowserMob
+            Proxy with specific keywords. Keywords are:
+
+                - captureHeaders: Boolean, capture headers
+                - captureContent: Boolean, capture content bodies
+                - captureBinaryContent: Boolean, capture binary content
+
+        :param str title: the title of first har page. Defaults to ref.
         """
         options = options if options is not None else {}
         payload = {"initialPageRef": ref} if ref is not None else {}
@@ -129,8 +131,8 @@ class Client(object):
         """
         This sets a new page to be recorded
 
-        :param ref: A reference for the new page. Defaults to None
-        :param title: the title of new har page. Defaults to ref.
+        :param str ref: A reference for the new page. Defaults to None
+        :param str title: the title of new har page. Defaults to ref.
         """
         payload = {"pageRef": ref} if ref is not None else {}
         if title is not None:
@@ -143,11 +145,9 @@ class Client(object):
         """
         Sets a list of URL patterns to blacklist
 
-
-        :param regex: a comma separated list of regular expressions
-        :param status_code: the HTTP status code to return for URLs that do not \
-                       match the blacklist
-
+        :param str regex: a comma separated list of regular expressions
+        :param int status_code: the HTTP status code to return for URLs
+            that do not match the blacklist
         """
         r = requests.put('%s/proxy/%s/blacklist' % (self.host, self.port),
                          {'regex': regexp, 'status': status_code})
@@ -157,10 +157,9 @@ class Client(object):
         """
         Sets a list of URL patterns to whitelist
 
-
-        :param regex: a comma separated list of regular expressions
-        :param status_code: the HTTP status code to return for URLs that do not \
-                       match the whitelist
+        :param str regex: a comma separated list of regular expressions
+        :param int status_code: the HTTP status code to return for URLs
+            that do not match the whitelist
         """
         r = requests.put('%s/proxy/%s/whitelist' % (self.host, self.port),
                          {'regex': regexp, 'status': status_code})
@@ -170,10 +169,9 @@ class Client(object):
         """
         This add automatic basic authentication
 
-
-        :param domain: domain to set authentication credentials for
-        :param username: valid username to use when authenticating
-        :param  password: valid password to use when authenticating
+        :param str domain: domain to set authentication credentials for
+        :param str username: valid username to use when authenticating
+        :param  str password: valid password to use when authenticating
         """
         r = requests.post(url='%s/proxy/%s/auth/basic/%s' % (self.host, self.port, domain),
                           data=json.dumps({'username': username, 'password': password}),
@@ -184,8 +182,7 @@ class Client(object):
         """
         This sets the headers that will set by the proxy on all requests
 
-
-        :param headers: this is a dictionary of the headers to be set
+        :param dict headers: this is a dictionary of the headers to be set
         """
         if not isinstance(headers, dict):
             raise TypeError("headers needs to be dictionary")
@@ -199,8 +196,7 @@ class Client(object):
         """
         Executes the javascript against each response
 
-
-        :param js: the javascript to execute
+        :param str js: the javascript to execute
         """
         r = requests.post(url='%s/proxy/%s/filter/response' % (self.host, self.port),
                   data=js,
@@ -211,8 +207,7 @@ class Client(object):
         """
         Executes the javascript against each request
 
-
-        :param js: the javascript to execute
+        :param str js: the javascript to execute
         """
         r = requests.post(url='%s/proxy/%s/filter/request' % (self.host, self.port),
                   data=js,
@@ -229,11 +224,10 @@ class Client(object):
         """
         Limit the bandwidth through the proxy.
 
-
-        :param options: A dictionary with all the details you want to set. \
-                        downstreamKbps - Sets the downstream kbps \
-                        upstreamKbps - Sets the upstream kbps \
-                        latency - Add the given latency to each HTTP request
+        :param dict options: A dictionary with all the details you want to set.
+            downstreamKbps - Sets the downstream kbps
+            upstreamKbps - Sets the upstream kbps
+            latency - Add the given latency to each HTTP request
         """
         params = {}
 
@@ -261,12 +255,11 @@ class Client(object):
         """
         Configure various timeouts in the proxy
 
-
-        :param options: A dictionary with all the details you want to set. \
-                        request - request timeout (in seconds) \
-                        read - read timeout (in seconds) \
-                        connection - connection timeout (in seconds) \
-                        dns - dns lookup timeout (in seconds)
+        :param dict options: A dictionary with all the details you want to set.
+            request - request timeout (in seconds)
+            read - read timeout (in seconds)
+            connection - connection timeout (in seconds)
+            dns - dns lookup timeout (in seconds)
         """
         params = {}
 
@@ -287,8 +280,9 @@ class Client(object):
         """
         Remap the hosts for a specific URL
 
-        :param address: url that you wish to remap
-        :param ip_address: IP Address that will handle all traffic for the address passed in
+        :param str address: url that you wish to remap
+        :param str ip_address: IP Address that will handle all traffic for
+            the address passed in
         :param **hostmap: Other hosts to be added as keyword arguments
         """
         hostmap = hostmap if hostmap is not None else {}
@@ -304,9 +298,9 @@ class Client(object):
         """
         Waits for the network to be quiet
 
-
-        :param quiet_period: number of miliseconds the network needs to be quiet for
-        :param timeout: max number of miliseconds to wait
+        :param int quiet_period: number of milliseconds the network needs
+            to be quiet for
+        :param int timeout: max number of milliseconds to wait
         """
         r = requests.put('%s/proxy/%s/wait' % (self.host, self.port),
                  {'quietPeriodInMs': quiet_period, 'timeoutInMs': timeout})
@@ -322,7 +316,6 @@ class Client(object):
     def rewrite_url(self, match, replace):
         """
         Rewrites the requested url.
-
 
         :param match: a regex to match requests with
         :param replace: unicode \
@@ -340,8 +333,7 @@ class Client(object):
         """
         Retries. No idea what its used for, but its in the API...
 
-
-        :param retry_count: the number of retries
+        :param int retry_count: the number of retries
         """
         r = requests.put('%s/proxy/%s/retry' % (self.host, self.port),
                  {'retrycount': retry_count})
