@@ -263,10 +263,3 @@ class TestClient(object):
         """
         status_code = self.client.retry(4)
         assert(status_code == 200)
-
-    def test_we_can_delete_dns_cache(self):
-        """
-        /proxy/:port/dns/cache
-        """
-        status_code = self.client.empty_dns_cache()
-        assert(status_code == 200)
