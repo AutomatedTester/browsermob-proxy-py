@@ -5,6 +5,7 @@ import subprocess
 import time
 
 from .client import Client
+from .exceptions import ProxyServerError
 
 
 class RemoteServer(object):
@@ -76,8 +77,8 @@ class Server(RemoteServer):
                 break
 
         if not os.path.isfile(path) and exec_not_on_path:
-            raise Exception("Browsermob-Proxy binary couldn't be found in path"
-                            " provided: %s" % path)
+            raise ProxyServerError("Browsermob-Proxy binary couldn't be found "
+                                   "in path provided: %s" % path)
 
         self.path = path
         self.host = 'localhost'
@@ -118,12 +119,12 @@ class Server(RemoteServer):
                     "Check {0}"
                     "for a helpful error message.".format(self.log_file))
 
-                raise Exception(message)
+                raise ProxyServerError(message)
             time.sleep(retry_sleep)
             count += 1
             if count == retry_count:
                 self.stop()
-                raise Exception("Can't connect to Browsermob-Proxy")
+                raise ProxyServerError("Can't connect to Browsermob-Proxy")
 
     def stop(self):
         """
