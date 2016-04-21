@@ -1,2 +1,2 @@
-class ProxyServerError(StandardError):
+class ProxyServerError(Exception):
     pass
