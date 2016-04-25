@@ -212,7 +212,6 @@ class TestClient(object):
         with pytest.raises(KeyError):
             self.client.timeouts({})
 
-    @pytest.mark.xfail(reason="see https://github.com/lightbody/browsermob-proxy/issues/414")
     def test_timeouts_all_key_values(self):
         """
         /proxy/:port/timeout
