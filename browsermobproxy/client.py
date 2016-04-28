@@ -20,6 +20,13 @@ class Client(object):
         """
         params = params if params is not None else {}
         options = options if options is not None else {}
+        
+        if not isinstance(params, dict):
+            raise Exception("params parameter needs to be a dictionary")
+        
+        if not isinstance(options, dict):
+            raise Exception("optons parameter needs to be a dictionary")
+        
         self.host = "http://" + url
         if params:
             urlparams = "?" + unquote(urlencode(params))

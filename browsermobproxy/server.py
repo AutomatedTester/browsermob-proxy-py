@@ -36,6 +36,10 @@ class RemoteServer(object):
             like httpProxy and httpsProxy
         """
         params = params if params is not None else {}
+        
+        if not isinstance(params, dict):
+            raise Exception("params parameter needs to be a dictionary")   
+        
         client = Client(self.url[7:], params)
         return client
 
@@ -52,7 +56,7 @@ class RemoteServer(object):
 
 class Server(RemoteServer):
 
-    def __init__(self, path='browsermob-proxy', options=None):
+    def __init__(self, path='browsermob-proxy-2.1.0-beta-5/bin/browsermob-proxy', options=None):
         """
         Initialises a Server object
 
@@ -62,6 +66,9 @@ class Server(RemoteServer):
             This defaults to an empty dictionary
         """
         options = options if options is not None else {}
+        
+        if not isinstance(options, dict):
+            raise Exception("options parameter needs to be a dictionary")
 
         path_var_sep = ':'
         if platform.system() == 'Windows':
@@ -89,6 +96,9 @@ class Server(RemoteServer):
         else:
             self.command = []
         self.command += [path, '--port=%s' % self.port]
+        
+        if options.get('legacy_mode', False) == True:
+            self.command.insert(1,'--use-littleproxy=False')
 
     def start(self, options=None):
         """
@@ -103,9 +113,13 @@ class Server(RemoteServer):
                 'log_path': os.getcwd(),
                 'log_file': 'server.log',
                 }
+        
+        if not isinstance(options, dict):
+            raise Exception("options parameter needs to be a dictionary")
+    
         log_path = options.get('log_path')
         log_file = options.get('log_file')
-        log_path_name = os.path.join(log_path, os.path.sep, log_file)
+        log_path_name = os.path.join(log_path, log_file)
         self.log_file = open(log_path_name, 'w')
 
         self.process = subprocess.Popen(self.command,
