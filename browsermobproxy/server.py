@@ -105,7 +105,7 @@ class Server(RemoteServer):
                 }
         log_path = options.get('log_path')
         log_file = options.get('log_file')
-        log_path_name = os.path.join(log_path, os.path.sep, log_file)
+        log_path_name = os.path.join(log_path, log_file)
         self.log_file = open(log_path_name, 'w')
 
         self.process = subprocess.Popen(self.command,
