@@ -225,8 +225,8 @@ class Client(object):
         Limit the bandwidth through the proxy.
 
         :param dict options: A dictionary with all the details you want to set.
-            downstreamKbps - Sets the downstream kbps
-            upstreamKbps - Sets the upstream kbps
+            downstream_kbps - Sets the downstream kbps
+            upstream_kbps - Sets the upstream kbps
             latency - Add the given latency to each HTTP request
         """
         params = {}
