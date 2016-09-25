@@ -99,14 +99,11 @@ class Server(RemoteServer):
             of the log file with resp. keys of `log_path` and `log_file`
         """
         if options is None:
-            options = {
-                'log_path': os.getcwd(),
-                'log_file': 'server.log',
-                'retry_sleep': 0.5,
-                'retry_count': 60,
-                }
-        log_path = options.get('log_path')
-        log_file = options.get('log_file')
+            options = {}
+        log_path = options.get('log_path', os.getcwd())
+        log_file = options.get('log_file', 'server.log')
+        retry_sleep = options.get('retry_sleep', 0.5)
+        retry_count = options.get('retry_count', 60)
         log_path_name = os.path.join(log_path, os.path.sep, log_file)
         self.log_file = open(log_path_name, 'w')
 
@@ -122,9 +119,9 @@ class Server(RemoteServer):
                     "for a helpful error message.".format(self.log_file))
 
                 raise Exception(message)
-            time.sleep(options.get('retry_sleep'))
+            time.sleep(retry_sleep)
             count += 1
-            if count == options.get('retry_count'):
+            if count == retry_count:
                 self.stop()
                 raise Exception("Can't connect to Browsermob-Proxy")
 
