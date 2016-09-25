@@ -104,7 +104,7 @@ class Server(RemoteServer):
         log_file = options.get('log_file', 'server.log')
         retry_sleep = options.get('retry_sleep', 0.5)
         retry_count = options.get('retry_count', 60)
-        log_path_name = os.path.join(log_path, os.path.sep, log_file)
+        log_path_name = os.path.join(log_path, log_file)
         self.log_file = open(log_path_name, 'w')
 
         self.process = subprocess.Popen(self.command,
