@@ -27,7 +27,7 @@ class RemoteServer(object):
         """
         return "http://%s:%d" % (self.host, self.port)
 
-    def create_proxy(self, params=None):
+    def create_proxy(self, data=None, params=None):
         """
         Gets a client class that allow to set all the proxy details that you
         may need to.
@@ -35,8 +35,9 @@ class RemoteServer(object):
         :param dict params: Dictionary where you can specify params
             like httpProxy and httpsProxy
         """
+        data = data if data is not None else {}
         params = params if params is not None else {}
-        client = Client(self.url[7:], params)
+        client = Client(self.url[7:], data, params)
         return client
 
     def _is_listening(self):
@@ -80,7 +81,7 @@ class Server(RemoteServer):
                             " provided: %s" % path)
 
         self.path = path
-        self.host = 'localhost'
+        self.host = options.get('host', 'localhost')
         self.port = options.get('port', 8080)
         self.process = None
 

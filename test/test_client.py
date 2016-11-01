@@ -166,34 +166,34 @@ class TestClient(object):
 
     def test_response_interceptor_with_parsing_js(self):
         """
-        /proxy/:port/interceptor/response
+        /proxy/:port/filter/response
         """
         js = 'alert("foo")'
-        status_code = self.client.response_interceptor(js)
+        status_code = self.client.response_filter(js)
         assert(status_code == 200)
 
     def test_response_interceptor_with_invalid_js(self):
         """
-        /proxy/:port/interceptor/response
+        /proxy/:port/filter/response
         """
         js = 'alert("foo"'
-        status_code = self.client.response_interceptor(js)
+        status_code = self.client.response_filter(js)
         assert(status_code == 500)
 
     def test_request_interceptor_with_parsing_js(self):
         """
-        /proxy/:port/interceptor/request
+        /proxy/:port/filter/request
         """
         js = 'alert("foo")'
-        status_code = self.client.request_interceptor(js)
+        status_code = self.client.request_filter(js)
         assert(status_code == 200)
 
     def test_request_interceptor_with_invalid_js(self):
         """
-        /proxy/:port/interceptor/request
+        /proxy/:port/filter/request
         """
         js = 'alert("foo"'
-        status_code = self.client.request_interceptor(js)
+        status_code = self.client.request_filter(js)
         assert(status_code == 500)
 
     def test_timeouts_invalid_timeouts(self):
