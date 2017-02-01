@@ -34,7 +34,7 @@ class Client(object):
                 jcontent = json.loads(content)
             except Exception as e:
                 raise Exception("Could not read Browsermob-Proxy json\n"
-                    "Another server running on this port?\n%s..."%content[:512])
+                                "Another server running on this port?\n%s..." % content[:512])
             self.port = jcontent['port']
         url_parts = self.host.split(":")
         self.proxy = url_parts[1][2:] + ":" + str(self.port)
@@ -102,7 +102,6 @@ class Client(object):
         r = requests.get('%s/proxy/%s/har' % (self.host, self.port))
 
         return r.json()
-
 
     def new_har(self, ref=None, options=None, title=None):
         """
@@ -199,24 +198,30 @@ class Client(object):
 
     def response_interceptor(self, js):
         """
-        Executes the javascript against each response
-
-        :param str js: the javascript to execute
+        Executes the java/js code against each response
+        `HttpRequest request <https://netty.io/4.1/api/io/netty/handler/codec/http/HttpRequest.html>`_,
+        `HttpMessageContents contents <https://raw.githubusercontent.com/lightbody/browsermob-proxy/master/browsermob-core/src/main/java/net/lightbody/bmp/util/HttpMessageContents.java>`_,
+        `HttpMessageInfo messageInfo <https://raw.githubusercontent.com/lightbody/browsermob-proxy/master/browsermob-core/src/main/java/net/lightbody/bmp/util/HttpMessageInfo.java>`_
+        are available objects to interact with.
+        :param str js: the js/java code to execute
         """
         r = requests.post(url='%s/proxy/%s/filter/response' % (self.host, self.port),
-                  data=js,
-                  headers={'content-type': 'application/json'})
+                          data=js,
+                          headers={'content-type': 'text/plain'})
         return r.status_code
 
     def request_interceptor(self, js):
         """
-        Executes the javascript against each request
-
-        :param str js: the javascript to execute
+        Executes the java/js code against each response
+        `HttpRequest request <https://netty.io/4.1/api/io/netty/handler/codec/http/HttpRequest.html>`_,
+        `HttpMessageContents contents <https://raw.githubusercontent.com/lightbody/browsermob-proxy/master/browsermob-core/src/main/java/net/lightbody/bmp/util/HttpMessageContents.java>`_,
+        `HttpMessageInfo messageInfo <https://raw.githubusercontent.com/lightbody/browsermob-proxy/master/browsermob-core/src/main/java/net/lightbody/bmp/util/HttpMessageInfo.java>`_
+        are available objects to interact with.
+        :param str js: the js/java code to execute
         """
         r = requests.post(url='%s/proxy/%s/filter/request' % (self.host, self.port),
-                  data=js,
-                  headers={'content-type': 'application/json'})
+                          data=js,
+                          headers={'content-type': 'text/plain'})
         return r.status_code
 
     LIMITS = {
@@ -295,7 +300,7 @@ class Client(object):
             hostmap[address] = ip_address
 
         r = requests.post('%s/proxy/%s/hosts' % (self.host, self.port),
-                         json.dumps(hostmap),
+                          json.dumps(hostmap),
                           headers={'content-type': 'application/json'})
         return r.status_code
 
@@ -308,7 +313,7 @@ class Client(object):
         :param int timeout: max number of milliseconds to wait
         """
         r = requests.put('%s/proxy/%s/wait' % (self.host, self.port),
-                 {'quietPeriodInMs': quiet_period, 'timeoutInMs': timeout})
+                         {'quietPeriodInMs': quiet_period, 'timeoutInMs': timeout})
         return r.status_code
 
     def clear_dns_cache(self):
@@ -334,6 +339,15 @@ class Client(object):
                          params)
         return r.status_code
 
+    def clear_all_rewrite_url_rules(self):
+        """
+        Clears all URL rewrite rules
+        :return: status code
+        """
+
+        r = requests.delete('%s/proxy/%s/rewrite' % (self.host, self.port))
+        return r.status_code
+
     def retry(self, retry_count):
         """
         Retries. No idea what its used for, but its in the API...
@@ -341,5 +355,5 @@ class Client(object):
         :param int retry_count: the number of retries
         """
         r = requests.put('%s/proxy/%s/retry' % (self.host, self.port),
-                 {'retrycount': retry_count})
+                         {'retrycount': retry_count})
         return r.status_code

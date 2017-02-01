@@ -167,6 +167,8 @@ class TestClient(object):
     def test_response_interceptor_with_parsing_js(self):
         """
         /proxy/:port/interceptor/response
+        This test is only checking very basic syntax rules. The snippet needs to be JAVA/JS
+        Code only gets validated if the filter/interceptor is used.
         """
         js = 'alert("foo")'
         status_code = self.client.response_interceptor(js)
@@ -175,6 +177,8 @@ class TestClient(object):
     def test_response_interceptor_with_invalid_js(self):
         """
         /proxy/:port/interceptor/response
+        This test is only checking very basic syntax rules. The snippet needs to be JAVA/JS
+        Code only gets validated if the filter/interceptor is used.
         """
         js = 'alert("foo"'
         status_code = self.client.response_interceptor(js)
@@ -183,6 +187,8 @@ class TestClient(object):
     def test_request_interceptor_with_parsing_js(self):
         """
         /proxy/:port/interceptor/request
+        This test is only checking very basic syntax rules. The snippet needs to be JAVA/JS
+        Code only gets validated if the filter/interceptor is used.
         """
         js = 'alert("foo")'
         status_code = self.client.request_interceptor(js)
@@ -191,6 +197,8 @@ class TestClient(object):
     def test_request_interceptor_with_invalid_js(self):
         """
         /proxy/:port/interceptor/request
+        This test is only checking very basic syntax rules. The snippet needs to be JAVA/JS
+        Code only gets validated if the filter/interceptor is used.
         """
         js = 'alert("foo"'
         status_code = self.client.request_interceptor(js)
