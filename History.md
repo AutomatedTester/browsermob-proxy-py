@@ -1,4 +1,45 @@
 
+0.8.0 / 2017-02-07
+==================
+
+  * Adds rewrite rules clear api. Fixes content type for request/response intercept and adds doc links for writing intercept code. Adds comments clarifying intercept client test coverage. Augments human test for url rewrite and adds clear portion. Adds test for response intercept. Adds bootstrap script to download tools to test with. Refactors human tests so browser session are cleaned up when tests fail and tests run with chromium. Adds server start script for travis. Changes .travis.yml to use provided scripts and also run headless chrome.
+  * If the JSON doesn't load, it's likely because the user has another server running on the same port. Improve the error message here so can figure out what's going on more easily.
+  * Inherit from Exception as StandardError was removed in Python 3
+  * Add ProxyServerError and raise it instead of Exception
+  * Fix docstring for limits()
+  * Fix path join issue: log_path_name would be /server.log
+  * Make default option values more robust
+  * Add retry sleep and count in options
+  * Reenabling timeout tests as they have been fixed in B6 of the server
+  * Removing duplicate method. Fixes #41
+  * docstrings cleanup
+  * configurable log file
+  * added title options for new har and new har page
+  * replaced mutable default values with None
+  * Update Requests dependency version
+  * Updating supported Python versions
+  * Disabling a test due to BMP Server bug
+  * Bumping version number of BMP server used in testing
+  * Add bmp.log to .gitignore
+  * Add details on how to contribute
+  * Updating response URL endpoints to use filter
+  * Ignoring .cache directory
+  * Change remap_hosts to accept dictionary
+  * Make sure the process is still running while waiting for the server to start.
+  * Changed hostmap to be a named argument for compatibility
+  * Merge remote-tracking branch 'upstream/master' into patch-1
+  * Add the ability to empty the DNS cache
+  * Correct function name
+  * Add the ability to return all active proxy ports from Browsermob
+  * switch to Travis container setup
+  * Update to latest browsermob proxy release for testing
+  * Correct exception typo
+  * Update remap_hosts test
+  * Fix whitespace
+  * Let remap_hosts accept a dictionary
+  * Upgrading Travis to it's container system
+  * bumping to 0.7.1
+
 0.7.1 / 2015-07-09
 ==================
 
