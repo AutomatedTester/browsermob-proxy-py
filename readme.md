@@ -74,7 +74,7 @@ $ py.test -m "not human" test
 See also
 --------
 
-* http://proxy.browsermob.com/
+* https://bmp.lightbody.net/
 * https://github.com/webmetrics/browsermob-proxy
 
 Note on Patches/Pull Requests
