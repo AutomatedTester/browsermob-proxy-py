@@ -81,15 +81,24 @@ class Server(RemoteServer):
                                    "in path provided: %s" % path)
 
         self.path = path
-        self.host = 'localhost'
+        self.host = options.get('address', '0.0.0.0')
         self.port = options.get('port', 8080)
+        port_range = (self.port + 1, self.port + 501)
+        proxy_port_range = options.get('proxyPortRange', port_range)
+        ttl = options.get('ttl', 0)
+        use_littleproxy = options.get('use-littleproxy', True)
         self.process = None
 
         if platform.system() == 'Darwin':
             self.command = ['sh']
         else:
             self.command = []
-        self.command += [path, '--port=%s' % self.port]
+        self.command += [path,
+                         '--address=%s' % self.host,
+                         '--port=%s' % self.port,
+                         '--proxyPortRange=%s-%s' % proxy_port_range,
+                         '--ttl=%s' % ttl,
+                         '--use-littleproxy=%s' % use_littleproxy]
 
     def start(self, options=None):
         """
