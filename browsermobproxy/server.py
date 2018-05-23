@@ -86,7 +86,7 @@ class Server(RemoteServer):
                                    "in path provided: %s" % path)
 
         self.path = path
-        self.host = 'localhost'
+        self.host = options.get('host', 'localhost')
         self.port = options.get('port', 8080)
         self.process = None
 
