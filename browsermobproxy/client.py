@@ -34,7 +34,8 @@ class Client(object):
                 jcontent = json.loads(content)
             except Exception as e:
                 raise Exception("Could not read Browsermob-Proxy json\n"
-                                "Another server running on this port?\n%s..." % content[:512])
+                 "Another server running on this port?\n%s..."%content[:512])
+
             self.port = jcontent['port']
         url_parts = self.host.split(":")
         self.proxy = url_parts[1][2:] + ":" + str(self.port)
