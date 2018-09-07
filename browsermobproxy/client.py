@@ -28,7 +28,7 @@ class Client(object):
         if 'existing_proxy_port_to_use' in options:
             self.port = options['existing_proxy_port_to_use']
         else:
-            resp = requests.post('%s/proxy' % self.host + urlparams)
+            resp = requests.post('%s/proxy' % self.host + urlparams, {"trustAllServers": True})
             content = resp.content.decode('utf-8')
             try:
                 jcontent = json.loads(content)
