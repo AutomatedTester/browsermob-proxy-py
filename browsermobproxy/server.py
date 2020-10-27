@@ -79,6 +79,8 @@ class Server(RemoteServer):
         for directory in os.environ['PATH'].split(path_var_sep):
             if(os.path.isfile(os.path.join(directory, path))):
                 exec_not_on_path = False
+                # When executable is found on path then store its absolute path
+                path = os.path.join(directory, path)
                 break
 
         if not os.path.isfile(path) and exec_not_on_path:
