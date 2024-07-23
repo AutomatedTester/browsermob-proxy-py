@@ -151,14 +151,32 @@ class Server(RemoteServer):
         """
         if self.process.poll() is not None:
             return
-
-        group_pid = os.getpgid(self.process.pid) if not self.win_env else self.process.pid
         try:
             self.process.kill()
             self.process.wait()
-            os.killpg(group_pid, signal.SIGINT)
+            if sys.platform.startswith('win'): 
+                # Use netstat to find the port and extract the PID 
+                find_port = f'netstat -aon | findstr {self.port}'  
+                result = subprocess.check_output(find_port, shell=True, text=True)
+                lines = result.strip().split('\n')
+                #Filter duplicate process numbers for IPV4 and IPV6
+                unique_pids = {line.split()[-1] for line in lines if line.split()[-1].isdigit() and line.split()[-1] != '0'}  
+                for pid_part in unique_pids:  
+                    try: 
+                        print('pid_part:'+pid_part)
+                        pid = int(pid_part)  
+                        # Terminate the process using taskkill
+                        find_kill = f'taskkill /F /PID {pid}'  
+                        subprocess.run(find_kill, shell=True, check=True)  
+                    except ValueError:  
+                        # If pid_part cannot be converted to int, ignore it  
+                        continue
+            else:
+                group_pid = os.getpgid(self.process.pid) if not self.win_env else self.process.pid
+                os.kill(group_pid, signal.SIGINT)
         except AttributeError:
             # kill may not be available under windows environment
-            pass
-
+            raise NotImplementedError("os.getpgid is not available on this platform")
+        except subprocess.CalledProcessError:
+            raise InterruptedError("Error finding or killing process")
         self.log_file.close()
